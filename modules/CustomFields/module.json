@@ -1,0 +1,20 @@
+{
+    "alias": "custom-fields",
+    "icon": "fa fa-angle-double-right",
+    "version": "2.0.2",
+    "category": "operation",
+    "active": 1,
+    "providers": [
+        "Modules\\CustomFields\\Providers\\Event",
+        "Modules\\CustomFields\\Providers\\Main",
+        "Modules\\CustomFields\\Providers\\Observer",
+        "Modules\\CustomFields\\Providers\\Validation",
+        "Modules\\CustomFields\\Providers\\ViewComposer"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "reports": [],
+    "widgets": [],
+    "settings": []
+}

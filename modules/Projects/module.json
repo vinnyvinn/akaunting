@@ -1,0 +1,32 @@
+{
+    "alias": "projects",
+    "icon": "fa fa-flask",
+    "version": "2.0.4",
+    "category": "operation",
+    "active": 1,
+    "providers": [
+        "Modules\\Projects\\Providers\\Event",
+        "Modules\\Projects\\Providers\\Main",
+        "Modules\\Projects\\Providers\\Observer",
+        "Modules\\Projects\\Providers\\Macro"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "reports": [],
+    "settings": [],
+    "widgets": [
+        "Modules\\Projects\\Widgets\\LatestIncome",
+        "Modules\\Projects\\Widgets\\ActiveDiscussion",
+        "Modules\\Projects\\Widgets\\RecentlyAddedTask",
+        "Modules\\Projects\\Widgets\\TotalInvoice",
+        "Modules\\Projects\\Widgets\\TotalRevenue",
+        "Modules\\Projects\\Widgets\\TotalBill",
+        "Modules\\Projects\\Widgets\\TotalPayment",
+        "Modules\\Projects\\Widgets\\TotalActivity",
+        "Modules\\Projects\\Widgets\\TotalTask",
+        "Modules\\Projects\\Widgets\\TotalDiscussion",
+        "Modules\\Projects\\Widgets\\TotalUser",
+        "Modules\\Projects\\Widgets\\ProjectLineChart"
+    ]
+}

@@ -1,0 +1,1 @@
+{{ Form::selectGroup('project_id', trans_choice('projects::general.project', 1), 'fa fa-flask', $projects, $selected, []) }}

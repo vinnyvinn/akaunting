@@ -1,0 +1,112 @@
+.calendar .fc-toolbar
+{
+    height: 42px !important;
+}
+
+.fc-icon:hover
+{
+    color: #fff !important;
+}
+
+.calendar .fc-button-primary
+{
+    color: #fff;
+    background-color: #3c3f72;
+    border-color: #3c3f72;
+}
+
+.fc-button-primary:hover
+{
+    color: #fff;
+    background-color: #3c3f72 !important;
+    border-color: #3c3f72 !important;
+}
+
+.calendar .fc-button-primary:not(:disabled):active, .fc-button-primary:not(:disabled).fc-button-active
+{
+    color: #fff;
+    background-color: #161842 !important;
+    border-color: #161842 !important;
+}
+
+.fc-today-button:disabled
+{
+    background-color: #dddddd !important;
+    border-color: #dddddd !important;
+    color: #000000 !important;
+}
+
+.el-color-picker__panel
+{
+    left: 624px !important;
+}
+
+.el-color-picker__color
+{
+    color: #e5e5e5 !important;
+}
+
+.myPlaceholder {
+    border:3px dotted #6ed28e;
+    height:60px; margin:10px
+}
+
+.tab-columns {
+    min-height: 500px;
+    border: 1px solid #cccccc;
+}
+
+.tab-in {
+    padding-left: 15px;
+    vertical-align: middle;
+}
+
+.tab-head-size {
+    height: 60px;
+    border: 1px solid #dddddd;
+    background-color: #f9f9f9;
+}
+
+.tab-titles {
+    padding-top: 11px;
+    margin: 0 0 4px;
+    overflow: hidden;
+    font-size: 11px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tab-h6 {
+    margin-top: 0;
+}
+
+.tab-price-text {
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.column-button {
+    float: right;
+    margin-top: -20px;
+    margin-right: 8px;
+}
+
+/*Heads Finish*/
+.tab-size {
+    height: 108px;
+    border: 1px solid #dddddd;
+    background: aliceblue;
+}
+
+.col-half-offset{
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.col-xs-2 {
+    width: 19.99% !important;
+}

@@ -1,0 +1,36 @@
+<?php
+
+namespace Modules\Crm\Http\Requests;
+
+use App\Abstracts\Http\FormRequest;
+
+class DealActivity extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'activity_type' => 'required',
+            'name' => 'required|string',
+            'date' => 'nullable|date_format:Y-m-d',
+            'time' => 'required',
+            'duration' => 'required',
+            'assigned' => 'required|integer',
+            'note' => 'nullable',
+        ];
+    }
+}

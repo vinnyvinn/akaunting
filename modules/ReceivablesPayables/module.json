@@ -1,0 +1,21 @@
+{
+    "alias": "receivables-payables",
+    "icon": "fas fa-forward",
+    "version": "1.0.0",
+    "category": "widget",
+    "active": 1,
+    "providers": [
+        "Modules\\ReceivablesPayables\\Providers\\Main"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "reports": [],
+    "widgets": [
+        "Modules\\ReceivablesPayables\\Widgets\\ClosestReceivables",
+        "Modules\\ReceivablesPayables\\Widgets\\ClosestPayables",
+        "Modules\\ReceivablesPayables\\Widgets\\ReceivablesOverdue",
+        "Modules\\ReceivablesPayables\\Widgets\\PayablesOverdue"
+    ],
+    "settings": []
+}

@@ -1,0 +1,31 @@
+{
+    "alias": "crm",
+    "icon": "fa fa-handshake",
+    "version": "2.0.3",
+    "category": "crm",
+    "active": 1,
+    "providers": [
+        "Modules\\Crm\\Providers\\Event",
+        "Modules\\Crm\\Providers\\Main",
+        "Modules\\Crm\\Providers\\Observer",
+        "Modules\\Crm\\Providers\\ViewComposer"
+    ],
+    "aliases": {},
+    "files": [
+    ],
+    "requires": [],
+    "reports": [
+        "Modules\\Crm\\Reports\\Activity",
+        "Modules\\Crm\\Reports\\Growth"
+    ],
+    "widgets": [
+        "Modules\\Crm\\Widgets\\TotalDeals",
+        "Modules\\Crm\\Widgets\\TotalCompanies",
+        "Modules\\Crm\\Widgets\\TotalContacts",
+        "Modules\\Crm\\Widgets\\DealFlow",
+        "Modules\\Crm\\Widgets\\TodaySchedule",
+        "Modules\\Crm\\Widgets\\UpcomingSchedule",
+        "Modules\\Crm\\Widgets\\LatestDeals"
+    ],
+    "settings": []
+}

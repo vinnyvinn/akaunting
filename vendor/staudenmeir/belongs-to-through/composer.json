@@ -1,0 +1,34 @@
+{
+    "name": "staudenmeir/belongs-to-through",
+    "description": "Laravel Eloquent BelongsToThrough relationships",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rahul Kadyan",
+            "email": "hi@znck.me"
+        },
+        {
+            "name": "Jonas Staudenmeir",
+            "email": "mail@jonas-staudenmeir.de"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5",
+        "illuminate/database": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Znck\\Eloquent\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

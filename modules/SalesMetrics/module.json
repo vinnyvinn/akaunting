@@ -1,0 +1,23 @@
+{
+    "alias": "sales-metrics",
+    "icon": "fa fa-cog",
+    "version": "1.0.2",
+    "category": "widget",
+    "active": 1,
+    "providers": [
+        "Modules\\SalesMetrics\\Providers\\Event",
+        "Modules\\SalesMetrics\\Providers\\Main"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "reports": [],
+    "widgets": [
+        "Modules\\SalesMetrics\\Widgets\\TopCustomersRevenueBased",
+        "Modules\\SalesMetrics\\Widgets\\TopCustomersProfitBased",
+        "Modules\\SalesMetrics\\Widgets\\TopItemsRevenueBased",
+        "Modules\\SalesMetrics\\Widgets\\TopItemsProfitBased",
+        "Modules\\SalesMetrics\\Widgets\\TopItemsProfitMarginBased"
+    ],
+    "settings": []
+}

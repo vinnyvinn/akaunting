@@ -1,0 +1,33 @@
+{
+    "name": "staudenmeir/eloquent-has-many-deep",
+    "description": "Laravel Eloquent HasManyThrough relationships with unlimited levels",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonas Staudenmeir",
+            "email": "mail@jonas-staudenmeir.de"
+        }
+    ],
+    "require": {
+        "php": "^7.2.5",
+        "illuminate/database": "^7.0"
+    },
+    "require-dev": {
+        "illuminate/pagination": "^7.0",
+        "laravel/homestead": "^10.0",
+        "phpunit/phpunit": "^8.5",
+        "staudenmeir/eloquent-eager-limit": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Staudenmeir\\EloquentHasManyDeep\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable" : true
+}

@@ -1,0 +1,21 @@
+{
+    "alias": "inventory",
+    "icon": "fa fa-cubes",
+    "version": "2.0.7",
+    "category": "inventory",
+    "active": 1,
+    "providers": [
+        "Modules\\Inventory\\Providers\\Event",
+        "Modules\\Inventory\\Providers\\Main",
+        "Modules\\Inventory\\Providers\\Observer",
+        "Modules\\Inventory\\Providers\\ViewComposer",
+        "Modules\\Inventory\\Providers\\Macro"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "reports": [],
+    "widgets": [],
+    "bulk_actions": [],
+    "settings": []
+}
