@@ -11,7 +11,7 @@ define('AKAUNTING_PHP', '7.2.5');
 
 // Check PHP version
 if (version_compare(PHP_VERSION, AKAUNTING_PHP, '<')) {
-    die('Your host needs to use PHP ' . AKAUNTING_PHP . ' or higher to run Akaunting');
+   // die('Your host needs to use PHP ' . AKAUNTING_PHP . ' or higher to run Akaunting');
 }
 
 // Register the auto-loader
