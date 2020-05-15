@@ -640,6 +640,7 @@
         :button_cancel="'{{ trans('general.button.save') }}'"
         :button_delete="'{{ trans('general.button.cancel') }}'">
         <template #modal-body>
+            <b style="text-align: center">Outstanding Amount: @money($total->amount - $bill->paid, $bill->currency_code, true)</b>
             @include('modals.bills.payment')
         </template>
 

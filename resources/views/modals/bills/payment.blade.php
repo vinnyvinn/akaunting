@@ -10,6 +10,7 @@
         'novalidate' => true
     ]) !!}
         <div class="row">
+
             <base-alert type="warning" v-if="typeof transaction_form.response !== 'undefined' && transaction_form.response.error" v-html="transaction_form.response.message"></base-alert>
 
             {{ Form::dateGroup('paid_at', trans('general.date'), 'calendar', ['id' => 'paid_at', 'required' => 'required', 'date-format' => 'Y-m-d', 'autocomplete' => 'off', 'v-model' => 'transaction_form.paid_at', 'v-error' => 'payment.errors.get("paid_at")', 'v-error-message' => 'payment.errors.get("paid_at")'], Date::now()->toDateString()) }}
