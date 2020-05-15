@@ -19,13 +19,14 @@
 
                 @include('partials.admin.header')
 
-                <div class="container-fluid content-layout mt--6">
+                <div class="container-fluid content-layout mt--6" id="app2">
 
                     @include('partials.admin.content')
 
                     @include('partials.admin.footer')
 
                 </div>
+
 
             </div>
 

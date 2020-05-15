@@ -2,6 +2,7 @@
 
 namespace Modules\Inventory\Models;
 
+use Faker\Factory;
 use Modules\Inventory\Models\Model;
 use Bkwld\Cloner\Cloneable;
 use Illuminate\Notifications\Notifiable;
@@ -39,5 +40,18 @@ class Item extends Model
         $item_warehouse = $this->belongsTo('Modules\Inventory\Models\WarehouseItem', 'item_id', 'item_id')->first();
 
         return isset($item_warehouse->warehouse_id) ? $item_warehouse->warehouse_id : null;
+    }
+    public static function createItem($item){
+        $faker = Factory::create();
+        $inv_item = self::create([
+            'company_id' => setting('inventory.default_warehouse'),
+            'item_id' => $item->id,
+            'sku' =>  'sku0'.$faker->randomDigitNotNull,
+            'opening_stock' => $faker->numberBetween(10,100),
+            'opening_stock_value' => $faker->numberBetween(600,2000),
+            'reorder_level' => 0
+        ]);
+        WarehouseItem::createWarehouse($inv_item,$item);
+
     }
 }

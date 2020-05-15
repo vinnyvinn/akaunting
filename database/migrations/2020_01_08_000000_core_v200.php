@@ -200,6 +200,21 @@ CoreV200 extends Migration
             $table->index(['company_id', 'type']);
         });
 
+        // Tranaction TX
+        Schema::create('inventory_txes', function (Blueprint $table) {
+            $table->increments('sno');
+            $table->integer('stock_link');
+            $table->string('tx_id');
+            $table->date('tx_date');
+            $table->integer('stk_qty');
+            $table->integer('warehouse_id');
+            $table->double('stock_cost');
+            $table->enum('stk_movement',['IN','OUT']);
+            $table->string('doc_no');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
         Schema::table('transfers', function (Blueprint $table) {
             $table->renameColumn('payment_id', 'expense_transaction_id');
         });
@@ -261,6 +276,7 @@ CoreV200 extends Migration
         Schema::drop('firewall_logs');
         Schema::drop('reports');
         Schema::drop('transactions');
+        Schema::drop('inventory_txes');
 
         Schema::table('companies', function (Blueprint $table) {
             $table->string('domain')->change();

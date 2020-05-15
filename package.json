@@ -1,0 +1,38 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.28",
+        "@fortawesome/free-solid-svg-icons": "^5.13.0",
+        "@fortawesome/vue-fontawesome": "^0.1.9",
+        "@grapecity/spread-sheets-vue": "^13.0.4",
+        "@mdi/font": "^5.2.45",
+        "axios": "^0.18",
+        "bootstrap": "^4.4.1",
+        "bootstrap-sass": "^3.4.1",
+        "cross-env": "^5.1",
+        "jquery": "^3.2",
+        "laravel-mix": "^1.0",
+        "lodash": "^4.17.4",
+        "vue": "^2.5.7",
+        "vue-toastr": "^2.1.2"
+    },
+    "dependencies": {
+        "ajv": "^6.12.2",
+        "cross-domain-storage": "^2.0.4",
+        "cross-storage": "^1.0.0",
+        "material-design-icons-iconfont": "^5.0.1",
+        "milsymbol": "^2.0.0",
+        "pngquant-bin": "^5.0.2",
+        "popper.js": "^1.16.1",
+        "vuetify": "^2.2.20"
+    }
+}

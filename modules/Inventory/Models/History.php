@@ -70,4 +70,16 @@ class History extends Model
                 break;
         }
     }
+
+    public static function createHistory($inv,$item){
+        self::create([
+            'company_id' => $item->company_id,
+            'user_id' => 1,
+            'item_id' => $item->id,
+            'type_id' => $item->id,
+            'type_type' => get_class($item),
+            'warehouse_id' => setting('inventory.default_warehouse'),
+            'quantity' => $inv->opening_stock,
+        ]);
+    }
 }

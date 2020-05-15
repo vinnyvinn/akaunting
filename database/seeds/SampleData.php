@@ -5,8 +5,6 @@ namespace Database\Seeds;
 use App\Abstracts\Model;
 use App\Models\Banking\Account;
 use App\Models\Common\Contact;
-use App\Models\Common\Item;
-use App\Models\Purchase\Bill;
 use App\Models\Sale\Invoice;
 use App\Models\Setting\Category;
 use App\Models\Setting\Tax;
@@ -45,13 +43,7 @@ class SampleData extends Seeder
         factory(Tax::class, $small_count)->states('enabled')->create();
         $bar->advance();
 
-        factory(Item::class, $count)->create();
-        $bar->advance();
-
         factory(Account::class, $small_count)->create();
-        $bar->advance();
-
-        factory(Bill::class, $count)->create();
         $bar->advance();
 
         factory(Invoice::class, $count)->create();

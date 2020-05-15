@@ -54,6 +54,10 @@ class BillItem extends Model
         });
     }
 
+    public function warehouse()
+    {
+        return $this->hasMany('Modules\Inventory\Models\WarehouseItem', 'item_id', 'item_id');
+    }
     public function bill()
     {
         return $this->belongsTo('App\Models\Purchase\Bill');

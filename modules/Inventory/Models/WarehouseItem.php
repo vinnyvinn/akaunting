@@ -34,4 +34,12 @@ class WarehouseItem extends Model
     {
         return $this->belongsTo('App\Models\Common\Item');
     }
+    public static function createWarehouse($inv,$item){
+        self::create([
+            'company_id' => $inv->company_id,
+            'warehouse_id' => setting('inventory.default_warehouse'),
+            'item_id' => $item->id,
+        ]);
+        History::createHistory($inv,$item);
+    }
 }
