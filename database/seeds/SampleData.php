@@ -46,8 +46,8 @@ class SampleData extends Seeder
         factory(Account::class, $small_count)->create();
         $bar->advance();
 
-        factory(Invoice::class, $count)->create();
-        $bar->advance();
+       // factory(Invoice::class, $count)->create();
+        //$bar->advance();
 
         $bar->finish();
 

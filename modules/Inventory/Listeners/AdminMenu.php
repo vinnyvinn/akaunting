@@ -63,6 +63,7 @@ class AdminMenu
 
             if ($user->can('read-inventory-histories')) {
                 $sub->url('inventory/histories', trans('inventory::general.menu.histories'), 6, $attr);
+                $sub->url('inventory/histories/transactions', 'Transaction Histories', 5, $attr);
             }
 
             /*

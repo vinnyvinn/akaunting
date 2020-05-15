@@ -3,6 +3,7 @@
 namespace Modules\Inventory\Models;
 
 use Modules\Inventory\Models\Model;
+//use Illuminate\Database\Eloquent\Model;
 use Bkwld\Cloner\Cloneable;
 use Illuminate\Notifications\Notifiable;
 
@@ -17,7 +18,7 @@ class Warehouse extends Model
      *
      * @var array
      */
-    protected $fillable = ['company_id', 'name', 'email', 'phone', 'address', 'enabled'];
+    protected $guarded = [];
 
     /**
      * Sortable columns.

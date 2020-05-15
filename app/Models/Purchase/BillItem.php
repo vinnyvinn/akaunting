@@ -3,6 +3,7 @@
 namespace App\Models\Purchase;
 
 use App\Abstracts\Model;
+//use Illuminate\Database\Eloquent\Model;
 use App\Traits\Currencies;
 use Bkwld\Cloner\Cloneable;
 
@@ -56,7 +57,7 @@ class BillItem extends Model
 
     public function warehouse()
     {
-        return $this->hasMany('Modules\Inventory\Models\WarehouseItem', 'item_id', 'item_id');
+        return $this->belongsTo('Modules\Inventory\Models\WarehouseItem', 'item_id', 'item_id');
     }
     public function bill()
     {

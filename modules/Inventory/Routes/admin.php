@@ -33,6 +33,7 @@ Route::group([
         Route::resource('warehouses', 'Warehouses');
 
         Route::get('histories/print', 'Histories@print')->name('histories.print');
+        Route::get('histories/transactions', 'Histories@transactions')->name('histories.transactions');
         Route::get('histories/export', 'Histories@export')->name('histories.export');
         Route::resource('histories', 'Histories');
 

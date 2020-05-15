@@ -211,6 +211,7 @@ CoreV200 extends Migration
             $table->double('stock_cost');
             $table->enum('stk_movement',['IN','OUT']);
             $table->string('doc_no');
+            $table->integer('company_id');
             $table->timestamps();
             $table->softDeletes();
         });

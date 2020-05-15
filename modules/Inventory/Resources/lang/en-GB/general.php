@@ -20,7 +20,9 @@ return [
     'manufacturers' => 'Manufacturer|Manufacturers',
     'warehouses' => 'Warehouse|Warehouses',
     'histories' => 'History|Histories',
+    'transactions' => 'Transaction|Transactions',
     'item_groups' => 'Group|Groups',
+    'stock_movement' => 'Stock Movement',
     'sku' => 'SKU',
     'quantity' => 'Quantity',
 

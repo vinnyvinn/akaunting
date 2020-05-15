@@ -3,6 +3,7 @@
 namespace App\Abstracts;
 
 use App\Abstracts\Model;
+//use Illuminate\Database\Eloquent\Model;
 use App\Models\Banking\Transaction;
 use App\Models\Setting\Currency;
 use App\Traits\Currencies;

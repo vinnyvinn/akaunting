@@ -4,6 +4,7 @@ namespace Modules\Inventory\Http\Controllers;
 
 use App\Abstracts\Http\Controller;
 
+use App\Models\Purchase\InventoryTx;
 use Modules\Inventory\Models\History;
 
 class Histories extends Controller
@@ -17,7 +18,6 @@ class Histories extends Controller
     public function index()
     {
         $histories = History::collect();
-    
         return view('inventory::histories.index', compact('histories'));
     }
 
@@ -29,5 +29,9 @@ class Histories extends Controller
     public function show()
     {
         return redirect()->route('histories.index');
+    }
+    public function transactions(){
+        $histories = InventoryTx::collect();
+        return view('inventory::transactions.index', compact('histories'));
     }
 }
