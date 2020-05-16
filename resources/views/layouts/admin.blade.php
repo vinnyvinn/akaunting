@@ -19,7 +19,7 @@
 
                 @include('partials.admin.header')
 
-                <div class="container-fluid content-layout mt--6" id="app2">
+                <div class="container-fluid content-layout mt--6">
 
                     @include('partials.admin.content')
 

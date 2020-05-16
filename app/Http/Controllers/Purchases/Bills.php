@@ -44,8 +44,9 @@ class Bills extends Controller
         $categories = Category::type('expense')->enabled()->orderBy('name')->pluck('name', 'id');
 
         $statuses = $this->getBillStatuses();
+        $items = json_encode(Bill::with(['contact', 'items', 'histories', 'transactions'])->get());
 
-        return view('purchases.bills.index', compact('bills', 'vendors', 'categories', 'statuses'));
+        return view('purchases.bills.index', compact('bills', 'vendors', 'categories', 'statuses','items'));
     }
 
     /**

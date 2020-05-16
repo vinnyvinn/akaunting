@@ -1492,7 +1492,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vuetify___default.a);
 Vue.component('walla-comp', __webpack_require__(56));
 
 var app = new Vue({
-  el: '#app2',
+  el: '#app',
   vuetify: new __WEBPACK_IMPORTED_MODULE_0_vuetify___default.a()
 
 });

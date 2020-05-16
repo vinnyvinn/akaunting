@@ -172,6 +172,7 @@
 
             <div class="card-body">
                 @stack('bill_header_start')
+                <input type="text" class="form-control" v-model="price">
                     <div class="row mx--4">
                         <div class="col-md-7 border-bottom-1">
                             <div class="table-responsive mt-2">
@@ -321,7 +322,8 @@
                 @stack('bill_information_end')
 
                 @stack('bill_item_start')
-                    <div class="row show-table">
+                <r-bill :items="{{json_encode($bill->items)}}" :notes="{{json_encode($bill->notes)}}" :bill="{{json_encode($bill)}}"></r-bill>
+                    <div style="display:none" class="row show-table">
                         <div class="col-md-12">
                             <div class="table-responsive overflow-y-hidden">
                                 <table class="table table-striped">
@@ -332,7 +334,11 @@
                                             @stack('name_th_end')
 
                                             @stack('quantity_th_start')
-                                                <th class="col-xs-4 col-sm-1 text-center">{{ trans('bills.quantity') }}</th>
+                                                <th class="col-xs-2 col-sm-1 text-center">{{ trans('bills.quantity') }}</th>
+                                            @stack('quantity_th_end')
+
+                                            @stack('quantity_th_start')
+                                            <th class="col-xs-2 col-sm-1">Quantity receive</th>
                                             @stack('quantity_th_end')
 
                                             @stack('price_th_start')
@@ -361,11 +367,14 @@
                                                 @stack('name_td_end')
 
                                                 @stack('quantity_td_start')
-                                                    <td class="col-xs-4 col-sm-1 text-center">{{ $bill_item->quantity }}</td>
+                                                    <td class="col-xs-2 col-sm-1 text-center total_qty">{{ $bill_item->quantity }}</td>
+                                                @stack('quantity_td_end')
+                                                @stack('quantity_td_start')
+                                                <td class="col-xs-2 col-sm-1 text-center"><input type="text" class="form-control qty_receive" value="{{ $bill_item->quantity }}" style="width: 50"></td>
                                                 @stack('quantity_td_end')
 
                                                 @stack('price_td_start')
-                                                    <td class="col-sm-3 text-right d-none d-sm-block">@money($bill_item->price, $bill->currency_code, true)</td>
+                                                    <td class="col-sm-3 text-right d-none d-sm-block price">@money($bill_item->price, $bill->currency_code, true)</td>
                                                 @stack('price_td_end')
 
                                                 @if (in_array(setting('localisation.discount_location', 'total'), ['item', 'both']))
@@ -375,8 +384,10 @@
                                                 @endif
 
                                                 @stack('total_td_start')
-                                                    <td class="col-xs-4 col-sm-3 text-right pr-5">@money($bill_item->total, $bill->currency_code, true)</td>
+                                                    <td class="col-xs-4 col-sm-3 text-right pr-5 total">@money($bill_item->total, $bill->currency_code, true)</td>
                                                 @stack('total_td_end')
+
+
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -387,7 +398,7 @@
                 @stack('bill_item_end')
 
                 @stack('bill_total_start')
-                    <div class="row mt-5">
+                    <div style="display: none" class="row mt-5">
                         <div class="col-md-7">
                             @stack('notes_input_start')
                                 <div class="table-responsive">
@@ -414,7 +425,7 @@
                                             @if ($total->code != 'total')
                                                 @stack($total->code . '_td_start')
                                                     <tr>
-                                                        <th>{{ trans($total->title) }}:</th>
+                                                        <th>{{ trans($total->title) }}:hii</th>
                                                         <td class="text-right">@money($total->amount, $bill->currency_code, true)</td>
                                                     </tr>
                                                 @stack($total->code . '_td_end')
@@ -422,14 +433,14 @@
                                                 @if ($bill->paid)
                                                     <tr>
                                                         <th class="text-success">
-                                                            {{ trans('bills.paid') }}:
+                                                            {{ trans('bills.paid') }}: paid
                                                         </th>
                                                         <td class="text-success text-right">- @money($bill->paid, $bill->currency_code, true)</td>
                                                     </tr>
                                                 @endif
                                                 @stack('grand_total_td_start')
                                                     <tr>
-                                                        <th>{{ trans($total->name) }}:</th>
+                                                        <th>{{ trans($total->name) }}:walal</th>
                                                         <td class="text-right">@money($total->amount - $bill->paid, $bill->currency_code, true)</td>
                                                     </tr>
                                                 @stack('grand_total_td_end')
@@ -656,8 +667,10 @@
             </div>
         </template>
     </akaunting-modal>
+
 @endpush
 
 @push('scripts_start')
     <script src="{{ asset('public/js/purchases/bills.js?v=' . version('short')) }}"></script>
 @endpush
+

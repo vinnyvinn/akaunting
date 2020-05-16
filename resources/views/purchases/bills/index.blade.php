@@ -11,11 +11,8 @@
 @endsection
 
 @section('content')
-    <walla-comp></walla-comp>
-
-    @if ($bills->count())
+       @if ($bills->count())
         <div class="card">
-            <cool></cool>
             <div class="card-header border-bottom-0" :class="[{'bg-gradient-primary': bulk_action.show}]">
                 {!! Form::open([
                     'method' => 'GET',
@@ -26,7 +23,7 @@
                     <div class="align-items-center" v-if="!bulk_action.show">
                         <akaunting-search
                             :placeholder="'{{ trans('general.search_placeholder') }}'"
-                            :options="{{ json_encode([]) }}"
+                            :options="{{$items}}"
                         ></akaunting-search>
                     </div>
 
