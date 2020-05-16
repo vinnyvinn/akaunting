@@ -17,6 +17,7 @@ use App\Models\Banking\Account;
 use App\Models\Common\Contact;
 use App\Models\Common\Item;
 use App\Models\Purchase\Bill;
+use App\Models\Purchase\BillItem;
 use App\Models\Setting\Category;
 use App\Models\Setting\Currency;
 use App\Models\Setting\Tax;
@@ -282,6 +283,7 @@ class Bills extends Controller
      */
     public function markReceived(Bill $bill)
     {
+
         event(new \App\Events\Purchase\BillReceived($bill));
 
         $message = trans('bills.messages.marked_received');
@@ -289,6 +291,18 @@ class Bills extends Controller
         flash($message)->success();
 
         return redirect()->back();
+    }
+
+    public function markReceive(Bill $bill)
+    {
+
+        BillItem::receiveQty();
+        event(new \App\Events\Purchase\BillReceived($bill));
+        $message = trans('bills.messages.marked_received');
+
+        flash($message)->success();
+
+        return response('success');
     }
 
     /**

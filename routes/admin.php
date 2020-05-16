@@ -98,6 +98,7 @@ Route::group(['prefix' => 'sales'], function () {
 
 Route::group(['prefix' => 'purchases'], function () {
     Route::get('bills/{bill}/received', 'Purchases\Bills@markReceived')->name('bills.received');
+    Route::post('bills/{bill}/mark-received', 'Purchases\Bills@markReceive')->name('bills.mark-received');;
     Route::get('bills/{bill}/cancelled', 'Purchases\Bills@markCancelled')->name('bills.cancelled');
     Route::get('bills/{bill}/paid', 'Purchases\Bills@markPaid')->name('bills.paid');
     Route::get('bills/{bill}/print', 'Purchases\Bills@printBill')->name('bills.print');

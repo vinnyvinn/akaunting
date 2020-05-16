@@ -44,7 +44,6 @@
             <div class="col-md-5">
                 <div class="table-responsive">
                     <table class="table">
-                        {{bill.currency_code}}
                         <tbody>
                         <tr>
                             <th v-if="bill.paid <=0">Subtotal:</th>
@@ -67,7 +66,6 @@
         </div>
     </div>
 </template>
-
 <script>
     export default {
      props:{
@@ -93,6 +91,8 @@
         watch:{
         computeCost(){
             this.total_cost=0;
+            let total_qty = 0;
+            let bill_items = [];
             for(let i=0;i<this.all_items.length;i++){
             if (this.item_id === this.all_items[i]['id']){
             if (!Number.isNaN(parseInt(this.item_qty))){
@@ -106,14 +106,17 @@
             }
             }
             this.total_cost+=(this.all_items[i]['quantity_received']*this.all_items[i]['price']);
+            bill_items.push({id:this.all_items[i]['id'],quantity_received:this.all_items[i]['quantity_received']});
             }
+            eventBus.$emit('bill_items',bill_items);
         }
         },
     created() {
          for(let i=0;i<this.items.length;i++){
-             this.all_items.push({id:this.items[i]['id'],name:this.items[i]['name'],quantity:this.items[i]['quantity'],quantity_received:this.items[i]['quantity'],price:this.items[i]['price'],total:this.items[i]['total']});
-
+             this.all_items.push({id:this.items[i]['id'],name:this.items[i]['name'],quantity:this.items[i]['quantity'],quantity_received:this.items[i]['quantity_received'],price:this.items[i]['price'],
+                 total:this.items[i]['total']});
          }
+
     },
         computed:{
          computeCost(){

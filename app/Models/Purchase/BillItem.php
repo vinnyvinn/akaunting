@@ -6,6 +6,7 @@ use App\Abstracts\Model;
 //use Illuminate\Database\Eloquent\Model;
 use App\Traits\Currencies;
 use Bkwld\Cloner\Cloneable;
+use Illuminate\Support\Facades\DB;
 
 class BillItem extends Model
 {
@@ -26,18 +27,7 @@ class BillItem extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'company_id',
-        'bill_id',
-        'item_id',
-        'name',
-        'quantity',
-        'price',
-        'total',
-        'tax',
-        'discount_rate',
-        'discount_type',
-    ];
+   protected $guarded = [];
 
     /**
      * Clonable relationships.
@@ -167,5 +157,10 @@ class BillItem extends Model
     public function onCloning($src, $child = null)
     {
         unset($this->tax_id);
+    }
+    public static function receiveQty(){
+        foreach (request()->all() as $item){
+        DB::table('bill_items')->where('id',$item['id'])->update(['quantity_received' =>$item['quantity_received']]);
+        }
     }
 }

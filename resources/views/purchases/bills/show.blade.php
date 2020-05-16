@@ -172,7 +172,6 @@
 
             <div class="card-body">
                 @stack('bill_header_start')
-                <input type="text" class="form-control" v-model="price">
                     <div class="row mx--4">
                         <div class="col-md-7 border-bottom-1">
                             <div class="table-responsive mt-2">
@@ -323,78 +322,7 @@
 
                 @stack('bill_item_start')
                 <r-bill :items="{{json_encode($bill->items)}}" :notes="{{json_encode($bill->notes)}}" :bill="{{json_encode($bill)}}"></r-bill>
-                    <div style="display:none" class="row show-table">
-                        <div class="col-md-12">
-                            <div class="table-responsive overflow-y-hidden">
-                                <table class="table table-striped">
-                                    <tbody>
-                                        <tr class="d-flex flex-nowrap">
-                                            @stack('name_th_start')
-                                                <th class="col-xs-4 col-sm-5 pl-5">{{ trans_choice('general.items', 1) }}</th>
-                                            @stack('name_th_end')
 
-                                            @stack('quantity_th_start')
-                                                <th class="col-xs-2 col-sm-1 text-center">{{ trans('bills.quantity') }}</th>
-                                            @stack('quantity_th_end')
-
-                                            @stack('quantity_th_start')
-                                            <th class="col-xs-2 col-sm-1">Quantity receive</th>
-                                            @stack('quantity_th_end')
-
-                                            @stack('price_th_start')
-                                                <th class="col-sm-3 text-right d-none d-sm-block">{{ trans('bills.price') }}</th>
-                                            @stack('price_th_end')
-
-                                            @if (in_array(setting('localisation.discount_location', 'total'), ['item', 'both']))
-                                                @stack('discount_th_start')
-                                                    <th class="col-sm-1 text-center d-none d-sm-block">{{ trans('bills.discount') }}</th>
-                                                @stack('discount_th_end')
-                                            @endif
-
-                                            @stack('total_th_start')
-                                                <th class="col-xs-4 col-sm-3 text-right pr-5">{{ trans('bills.total') }}</th>
-                                            @stack('total_th_end')
-                                        </tr>
-                                        @foreach($bill->items as $bill_item)
-                                            <tr class="d-flex flex-nowrap">
-                                                @stack('name_td_start')
-                                                    <td class="col-xs-4 col-sm-5 pl-5">
-                                                        {{ $bill_item->name }}
-                                                        @if (!empty($bill_item->item->description))
-                                                            <br><small class="text-pre-nowrap">{!! \Illuminate\Support\Str::limit($bill_item->item->description, 500) !!}<small>
-                                                        @endif
-                                                    </td>
-                                                @stack('name_td_end')
-
-                                                @stack('quantity_td_start')
-                                                    <td class="col-xs-2 col-sm-1 text-center total_qty">{{ $bill_item->quantity }}</td>
-                                                @stack('quantity_td_end')
-                                                @stack('quantity_td_start')
-                                                <td class="col-xs-2 col-sm-1 text-center"><input type="text" class="form-control qty_receive" value="{{ $bill_item->quantity }}" style="width: 50"></td>
-                                                @stack('quantity_td_end')
-
-                                                @stack('price_td_start')
-                                                    <td class="col-sm-3 text-right d-none d-sm-block price">@money($bill_item->price, $bill->currency_code, true)</td>
-                                                @stack('price_td_end')
-
-                                                @if (in_array(setting('localisation.discount_location', 'total'), ['item', 'both']))
-                                                    @stack('discount_td_start')
-                                                        <td class="col-sm-1 text-center d-none d-sm-block">{{ $bill_item->discount }}</td>
-                                                    @stack('discount_td_end')
-                                                @endif
-
-                                                @stack('total_td_start')
-                                                    <td class="col-xs-4 col-sm-3 text-right pr-5 total">@money($bill_item->total, $bill->currency_code, true)</td>
-                                                @stack('total_td_end')
-
-
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
                 @stack('bill_item_end')
 
                 @stack('bill_total_start')
@@ -440,7 +368,7 @@
                                                 @endif
                                                 @stack('grand_total_td_start')
                                                     <tr>
-                                                        <th>{{ trans($total->name) }}:walal</th>
+                                                        <th>{{ trans($total->name) }}:</th>
                                                         <td class="text-right">@money($total->amount - $bill->paid, $bill->currency_code, true)</td>
                                                     </tr>
                                                 @stack('grand_total_td_end')
@@ -489,18 +417,16 @@
                                                     @permission('update-purchases-bills')
                                                         <a class="dropdown-item" href="{{ route('bills.paid', $bill->id) }}">{{ trans('bills.mark_paid') }}</a>
                                                     @endpermission
-
                                                     @if(empty($bill->paid) || ($bill->paid != $bill->amount))
                                                         <button class="dropdown-item" id="button-payment" @click="onPayment">{{ trans('bills.add_payment') }}</button>
                                                     @endif
                                                     <div class="dropdown-divider"></div>
                                                 @endif
                                             @stack('button_pay_end')
-
                                             @stack('button_received_start')
                                                 @permission('update-purchases-bills')
                                                     @if($bill->status == 'draft')
-                                                        <a class="dropdown-item" href="{{ route('bills.received', $bill->id) }}">{{ trans('bills.mark_received') }}</a></a>
+                                                   <pay-bill :bill="{{json_encode($bill)}}"></pay-bill>
                                                     @else
                                                         <button type="button" class="dropdown-item" disabled="disabled">{{ trans('bills.mark_received') }}</button>
                                                     @endif
