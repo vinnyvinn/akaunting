@@ -78,56 +78,8 @@ class Sku extends Seeder
             'enabled' => 1
         ]);
         InventoryItem::createItem($item5);
-        $item6= Item::create([
-            'company_id' => session('company_id'),
-            'name' => $faker->name,
-            'description' => $faker->sentence,
-            'sale_price' => $faker->numberBetween(500,1000),
-            'purchase_price' => $faker->numberBetween(50,450),
-            'category_id' => 1,
-            'enabled' => 1
-        ]);
-        InventoryItem::createItem($item6);
-        $item7 = Item::create([
-            'company_id' => session('company_id'),
-            'name' => $faker->name,
-            'description' => $faker->sentence,
-            'sale_price' => $faker->numberBetween(500,1000),
-            'purchase_price' => $faker->numberBetween(50,450),
-            'category_id' => 1,
-            'enabled' => 1
-        ]);
-        InventoryItem::createItem($item7);
-        $item8 = Item::create([
-            'company_id' => session('company_id'),
-            'name' => $faker->name,
-            'description' => $faker->sentence,
-            'sale_price' => $faker->numberBetween(500,1000),
-            'purchase_price' => $faker->numberBetween(50,450),
-            'category_id' => 1,
-            'enabled' => 1
-        ]);
-        InventoryItem::createItem($item8);
-        $item9 = Item::create([
-            'company_id' => session('company_id'),
-            'name' => $faker->name,
-            'description' => $faker->sentence,
-            'sale_price' => $faker->numberBetween(500,1000),
-            'purchase_price' => $faker->numberBetween(50,450),
-            'category_id' => 1,
-            'enabled' => 1
-        ]);
-        InventoryItem::createItem($item9);
-        $item10 = Item::create([
-            'company_id' => session('company_id'),
-            'name' => $faker->name,
-            'description' => $faker->sentence,
-            'sale_price' => $faker->numberBetween(500,1000),
-            'purchase_price' => $faker->numberBetween(50,450),
-            'category_id' => 1,
-            'enabled' => 1
-        ]);
-        InventoryItem::createItem($item10);
+             
+
         $company_id = $this->command->argument('company');
 
         setting()->setExtraColumns(['company_id' => $company_id]);
