@@ -91,7 +91,6 @@
         watch:{
         computeCost(){
             this.total_cost=0;
-            let total_qty = 0;
             let bill_items = [];
             for(let i=0;i<this.all_items.length;i++){
             if (this.item_id === this.all_items[i]['id']){

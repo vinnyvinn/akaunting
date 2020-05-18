@@ -13,6 +13,6 @@ class DatabaseSeeder extends Seeder
     {
       $this->call(\Modules\CustomFields\Database\Seeds\Install::class);
       $this->call(\Database\Seeds\TestCompany::class);
-      $this->call(\Database\Seeds\SampleData::class);
+    //  $this->call(\Database\Seeds\SampleData::class);
     }
 }
