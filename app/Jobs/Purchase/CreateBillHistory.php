@@ -50,7 +50,7 @@ class CreateBillHistory extends Job
         foreach ($this->bill->items as $item){
                  InventoryTx::create([
                 'stock_link' => $item->id,
-                'stk_qty' => $item->quantity,
+                'stk_qty' => $item->quantity_received,
                 'tx_id' =>  $this->bill->id,
                 'tx_date' => Carbon::now(),
                 'warehouse_id' => $item->warehouse->warehouse_id,
