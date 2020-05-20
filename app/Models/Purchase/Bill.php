@@ -108,4 +108,16 @@ class Bill extends DocumentModel
 
         return ($received) ? $received->created_at : null;
     }
+
+    public static function updateTotal($bill_id,$total){
+     self::find($bill_id)->update(['amount' => $total]);
+    foreach (self::find($bill_id)->totals as $item){
+     BillTotal::where('bill_id',$bill_id)->update(['amount' =>$total]);
+    }
+}
+
+    public  function scopeContacto($query,$contact)
+    {
+     return $query->where('contact_id',$contact);
+ }
 }

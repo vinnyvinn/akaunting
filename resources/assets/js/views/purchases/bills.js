@@ -21,6 +21,8 @@ import PayBill from "../../components/PayBill";
 
 window.eventBus = new Vue();
 window.axios = require('axios');
+
+
 window.site_url = process.env.MIX_BASE_URL;
 Vue.filter('toCurrency', function (value,cur='GBP') {
     if (typeof value !== "number") {

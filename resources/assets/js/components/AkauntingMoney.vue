@@ -2,27 +2,22 @@
     <div class="form-group"
         :class="[{'has-error': error}, {'required': required}, {'readonly': readonly}, {'disabled': disabled}, col]">
         <label v-if="title" :for="name" class="form-control-label">{{ title }}</label>
-
         <div class="input-group input-group-merge" :class="group_class">
             <div v-if="icon" class="input-group-prepend">
                 <span class="input-group-text">
                     <i class="fa fa-" :class="icon"></i>
                 </span>
             </div>
-
             <money :name="name" @input="input" :placeholder="placeholder" v-bind="money" :value="value" :disabled="disabled" :masked="masked" class="form-control"></money>
         </div>
-
         <div class="invalid-feedback d-block" v-if="error" v-html="error"></div>
     </div>
 </template>
 
 <script>
 import {Money} from 'v-money';
-
 export default {
     name: "akaunting-money",
-
     components: {
         Money
     },
@@ -152,7 +147,7 @@ export default {
                 precision: parseInt(currency.precision),
                 masked: this.masked
             };
-        },
+           },
         value: function (value) {
             this.model = value;
         },

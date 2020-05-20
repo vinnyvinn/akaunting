@@ -3,7 +3,6 @@ import Errors from './error';
 export default class Form {
     constructor(form_id) {
         let form = document.getElementById(form_id);
-
         if (!form) {
             return;
         }

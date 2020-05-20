@@ -3,6 +3,7 @@
 namespace App\Models\Purchase;
 
 use App\Abstracts\Model;
+//use Illuminate\Database\Eloquent\Model;
 use App\Models\Setting\Tax;
 use App\Traits\DateTime;
 

@@ -19,6 +19,10 @@ class Form extends Provider
             'name', 'text', 'icon', 'attributes' => ['required' => 'required'], 'value' => null, 'col' => 'col-md-6', 'group_class' => null
         ]);
 
+        Facade::component('moneyGroupBill', 'partials.form.money_group_bill', [
+            'name', 'text', 'icon', 'attributes' => ['required' => 'required'], 'value' => null, 'col' => 'col-md-6', 'group_class' => null
+        ]);
+
         Facade::component('dateTimeGroup', 'partials.form.date_time_group', [
             'name', 'text', 'icon', 'attributes' => ['required' => 'required'], 'value' => null, 'col' => 'col-md-6', 'group_class' => null
         ]);
@@ -58,8 +62,13 @@ class Form extends Provider
         Facade::component('selectGroup', 'partials.form.select_group', [
             'name', 'text', 'icon', 'values', 'selected' => null, 'attributes' => ['required' => 'required'], 'col' => 'col-md-6', 'group_class' => null
         ]);
-
+        Facade::component('selectBillGroup', 'partials.form.select_group_bill', [
+            'name', 'text', 'icon', 'values', 'selected' => null, 'attributes' => ['required' => 'required'], 'col' => 'col-md-6', 'group_class' => null
+        ]);
         Facade::component('selectAddNewGroup', 'partials.form.select_add_new_group', [
+            'name', 'text', 'icon', 'values', 'selected' => null, 'attributes' => ['required' => 'required', 'path' => ''], 'col' => 'col-md-6', 'group_class' => null
+        ]);
+        Facade::component('selectAddNewVendorGroup', 'partials.form.select_add_new_group_vendor', [
             'name', 'text', 'icon', 'values', 'selected' => null, 'attributes' => ['required' => 'required', 'path' => ''], 'col' => 'col-md-6', 'group_class' => null
         ]);
 

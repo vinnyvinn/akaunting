@@ -39,7 +39,7 @@ class CreateBill extends Job
             $this->request['amount'] = 0;
         }
 
-        event(new BillCreating($this->request));
+        //event(new BillCreating($this->request));
 
         $this->bill = Bill::create($this->request->all());
 
@@ -56,7 +56,7 @@ class CreateBill extends Job
 
         $this->bill->createRecurring();
 
-        event(new BillCreated($this->bill));
+      //  event(new BillCreated($this->bill));
 
         return $this->bill;
     }

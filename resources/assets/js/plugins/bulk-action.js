@@ -52,7 +52,6 @@ export default class BulkAction {
                 this.selected.push(input.getAttribute('value'));
             }
         }
-
         this.count = this.selected.length;
     }
 
@@ -69,7 +68,7 @@ export default class BulkAction {
     // Selected item use action
     action() {
         if (this.value == '*') {
-            return;
+           return;
         }
 
         var path = document.getElementsByName("bulk_action_path")[0].getAttribute('value');
@@ -132,7 +131,6 @@ export default class BulkAction {
                 link.remove();
 
                 window.URL.revokeObjectURL(url);
-
                  this.loading = false;
                  this.modal = false;
                  this.value = '*';
@@ -152,7 +150,6 @@ export default class BulkAction {
     status(item_id, event, notify) {
         var item = event.target;
         var status = (event.target.checked) ? 'enable' : 'disable';
-
         window.axios.get(this.path + '/' + item_id + '/' + status)
         .then(response => {
             var type = (response.data.success) ? 'success' : 'warning';

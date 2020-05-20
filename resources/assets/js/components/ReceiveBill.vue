@@ -88,12 +88,19 @@
            id:''
        }
      },
-        watch:{
+       watch:{
         computeCost(){
             this.total_cost=0;
             let bill_items = [];
             for(let i=0;i<this.all_items.length;i++){
+                setTimeout(()=>{
+                if(this.all_items[i]['quantity_received'] > 0){
+                   this.all_items[i]['total'] = this.all_items[i]['quantity_received']*this.all_items[i]['price'];
+                //   this.total_cost+=this.all_items[i]['quantity_received']*this.all_items[i]['price'];
+                    }
+                },1000)
             if (this.item_id === this.all_items[i]['id']){
+             //   this.total_cost = 0;
             if (!Number.isNaN(parseInt(this.item_qty))){
                 if (parseInt(this.item_qty) > this.all_items[i]['quantity'] || parseInt(this.item_qty) <=0){
                   this.item_qty = this.all_items[i]['quantity'];
@@ -108,6 +115,7 @@
             bill_items.push({id:this.all_items[i]['id'],quantity_received:this.all_items[i]['quantity_received']});
             }
             eventBus.$emit('bill_items',bill_items);
+            eventBus.$emit('bill_total',this.total_cost);
         }
         },
     created() {

@@ -78,7 +78,6 @@ class Sku extends Seeder
             'enabled' => 1
         ]);
         InventoryItem::createItem($item5);
-             
 
         $company_id = $this->command->argument('company');
 

@@ -101,6 +101,7 @@ Route::group(['prefix' => 'purchases'], function () {
     Route::post('bills/{bill}/mark-received', 'Purchases\Bills@markReceive')->name('bills.mark-received');;
     Route::get('bills/{bill}/cancelled', 'Purchases\Bills@markCancelled')->name('bills.cancelled');
     Route::get('bills/{bill}/paid', 'Purchases\Bills@markPaid')->name('bills.paid');
+    Route::get('bills/{bill}/bill-total', 'Purchases\Bills@billTotal')->name('bills.bill-total');
     Route::get('bills/{bill}/print', 'Purchases\Bills@printBill')->name('bills.print');
     Route::get('bills/{bill}/pdf', 'Purchases\Bills@pdfBill')->name('bills.pdf');
     Route::get('bills/{bill}/duplicate', 'Purchases\Bills@duplicate')->name('bills.duplicate');
@@ -119,6 +120,7 @@ Route::group(['prefix' => 'purchases'], function () {
     Route::post('vendors/import', 'Purchases\Vendors@import')->name('vendors.import');
     Route::get('vendors/export', 'Purchases\Vendors@export')->name('vendors.export');
     Route::get('vendors/{vendor}/enable', 'Purchases\Vendors@enable')->name('vendors.enable');
+    Route::get('vendors/{vendor}/bills', 'Purchases\Vendors@getBills')->name('vendors.bills');
     Route::get('vendors/{vendor}/currency', 'Purchases\Vendors@currency')->name('vendors.currency');
     Route::get('vendors/{vendor}/disable', 'Purchases\Vendors@disable')->name('vendors.disable');
     Route::resource('vendors', 'Purchases\Vendors');

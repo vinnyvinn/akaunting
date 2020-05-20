@@ -233,6 +233,9 @@ export default {
             this.form.loading = true;
 
             this.$emit("submit", this.form);
+            setTimeout(()=>{
+                window.location.reload();
+            },1000)
         },
 
         onCancel() {

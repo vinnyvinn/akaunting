@@ -35,6 +35,7 @@ import BasePagination from './BasePagination.vue';
 
 import SidebarPlugin from './SidebarPlugin';
 import ReceiveBill from "./ReceiveBill";
+import BillSelect from "./BillSelect";
 
 export {
     BaseCheckbox,
@@ -68,5 +69,6 @@ export {
     CollapseItem,
     LoadingPanel,
     AsyncWorldMap,
-    ReceiveBill
+    ReceiveBill,
+    BillSelect
 };

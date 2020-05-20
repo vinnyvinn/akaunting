@@ -977,7 +977,6 @@ export default {
         if (this.multiple && !this.real_model.length) {
             this.real_model = [];
         }
-
         this.$emit('interface', this.real_model);
     },
 
@@ -986,9 +985,10 @@ export default {
             if (typeof(this.real_model) === 'object' && typeof(this.real_model.type) !== 'undefined') {
                 return false;
             }
-
             this.$emit('interface', this.real_model);
             this.$emit('change', this.real_model);
+     console.log(this.real_model)
+
         },
 
         async onAddItem() {
@@ -1055,6 +1055,7 @@ export default {
                         }
                     })
                 });
+
             })
             .catch(e => {
                 this.errors.push(e);
@@ -1087,6 +1088,7 @@ export default {
                         }
                     }
                 }
+
             };
 
             let form_data = new FormData();

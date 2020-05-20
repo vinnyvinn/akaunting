@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\Common;
-
+//use Illuminate\Database\Eloquent\Model;
 use App\Abstracts\Model;
 use Bkwld\Cloner\Cloneable;
 use App\Traits\Contacts;

@@ -94,6 +94,12 @@ class Vendors extends Controller
         return view('purchases.vendors.show', compact('vendor', 'counts', 'amounts', 'transactions', 'bills'));
     }
 
+    //get Vendor Bills
+    public function getBills($contact)
+    {
+        $bills = Bill::contacto($contact)->NotPaid()->pluck('bill_number','id');
+        return response()->json($bills);
+    }
     /**
      * Show the form for creating a new resource.
      *

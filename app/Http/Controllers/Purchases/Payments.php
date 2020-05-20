@@ -13,6 +13,7 @@ use App\Jobs\Banking\UpdateTransaction;
 use App\Models\Banking\Account;
 use App\Models\Banking\Transaction;
 use App\Models\Common\Contact;
+use App\Models\Purchase\Bill;
 use App\Models\Setting\Category;
 use App\Models\Setting\Currency;
 use App\Traits\Currencies;
@@ -71,8 +72,9 @@ class Payments extends Controller
         $categories = Category::type('expense')->enabled()->orderBy('name')->pluck('name', 'id');
 
         $payment_methods = Modules::getPaymentMethods();
+        $bills = Bill::NotPaid()->orderBy('bill_number')->pluck('bill_number', 'id');
 
-        return view('purchases.payments.create', compact('accounts', 'currencies', 'account_currency_code', 'currency', 'vendors', 'categories', 'payment_methods'));
+        return view('purchases.payments.create', compact('accounts', 'currencies', 'account_currency_code', 'currency', 'vendors', 'categories', 'payment_methods','bills'));
     }
 
     /**

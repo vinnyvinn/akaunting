@@ -6,7 +6,8 @@
     export default {
         data(){
          return{
-             b_items:0
+             b_items:0,
+             b_total:0
          }
         },
         props:{
@@ -15,14 +16,17 @@
             }
         },
         created(){
+
             eventBus.$on('bill_items',(res) =>{
            this.b_items = res;
-
-       })
+         });
+            eventBus.$on('bill_total',(res) =>{
+                this.b_total = res;
+            })
         },
        methods:{
-           markReceived(){
-         axios.post(`/purchases/bills/${this.bill.id}/mark-received`,this.b_items)
+          markReceived(){
+         axios.post(`/purchases/bills/${this.bill.id}/mark-received`,{items:this.b_items,total:this.b_total})
                .then(res => {
               window.location.reload();
                })

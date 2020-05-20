@@ -159,8 +159,13 @@ class BillItem extends Model
         unset($this->tax_id);
     }
     public static function receiveQty(){
-        foreach (request()->all() as $item){
+        foreach (request()->get('items') as $item){
+         if ($item['quantity_received'] <=0){
+             return false;
+         }
         DB::table('bill_items')->where('id',$item['id'])->update(['quantity_received' =>$item['quantity_received']]);
         }
+       Bill::updateTotal(self::find($item['id'])->bill_id,request()->get('total'));
+        return true;
     }
 }

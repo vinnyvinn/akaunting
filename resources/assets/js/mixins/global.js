@@ -1,7 +1,6 @@
 import Vue from 'vue';
 
 import axios from 'axios';
-
 import AkauntingSearch from './../components/AkauntingSearch';
 import AkauntingModal from './../components/AkauntingModal';
 import AkauntingMoney from './../components/AkauntingMoney';
@@ -20,6 +19,10 @@ import NProgressAxios from './../plugins/nprogress-axios';
 import { Select, Option, Steps, Step, Button, Link, Tooltip, ColorPicker } from 'element-ui';
 
 import Form from './../plugins/form';
+import BillSelect from "../components/BillSelect";
+import BillMoney from "../components/BillMoney";
+import OutstandingAmount from "../components/OutstandingAmount";
+import VendorSelect from "../components/VendorSelect";
 
 export default {
     components: {
@@ -32,6 +35,10 @@ export default {
         AkauntingModalAddNew,
         AkauntingDate,
         AkauntingRecurring,
+        BillSelect,
+        BillMoney,
+        VendorSelect,
+        OutstandingAmount,
         AkauntingHtmlEditor,
         [Select.name]: Select,
         [Option.name]: Option,
@@ -64,10 +71,8 @@ export default {
             if (!flash_notification) {
                 return false;
             }
-
             flash_notification.forEach(notify => {
                 let type = notify.level;
-
                 this.$notify({
                     message: notify.message,
                     timeout: 5000,
@@ -81,7 +86,6 @@ export default {
         onSubmit() {
             this.form.submit();
         },
-
         onHandleFileUpload(key, event) {
             this.form[key] = '';
             this.form[key] = event.target.files[0];
@@ -96,12 +100,10 @@ export default {
         onSelect() {
             this.bulk_action.select();
         },
-
         // Bulk Action use selected Change
         onChange(event) {
             var result = this.bulk_action.change(event);
         },
-
         // Bulk Action use selected Action
         onAction() {
             this.bulk_action.action();

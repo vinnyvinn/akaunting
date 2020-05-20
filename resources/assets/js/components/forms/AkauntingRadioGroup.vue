@@ -1,8 +1,7 @@
 <template>
     <div class="form-group" :class="col">
         <label :for="name" class="form-control-label">{{ text }}</label>
-
-        <div class="tab-pane tab-example-result fade show active" role="tabpanel" aria-labelledby="-component-tab">
+          <div class="tab-pane tab-example-result fade show active" role="tabpanel" aria-labelledby="-component-tab">
             <div class="btn-group btn-group-toggle" data-toggle="buttons" v-on:click="onClick">
                 <label class="btn btn-success"
                        :class="[{'active': value === 1}]">

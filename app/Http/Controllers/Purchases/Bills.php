@@ -59,6 +59,7 @@ class Bills extends Controller
      */
     public function show(Bill $bill)
     {
+
         $accounts = Account::enabled()->orderBy('name')->pluck('name', 'id');
 
         $currencies = Currency::enabled()->orderBy('name')->pluck('name', 'code')->toArray();
@@ -79,11 +80,9 @@ class Bills extends Controller
         foreach ($bill->totals_sorted as $bill_total) {
             $bill->{$bill_total->code} = $bill_total->amount;
         }
-
         $total = money($bill->total, $currency->code, true)->format();
 
         $bill->grand_total = money($total, $currency->code)->getAmount();
-
         if (!empty($bill->paid)) {
             $bill->grand_total = round($bill->total - $bill->paid, $currency->precision) ;
         }
@@ -98,6 +97,7 @@ class Bills extends Controller
      */
     public function create()
     {
+
         $vendors = Contact::vendor()->enabled()->orderBy('name')->pluck('name', 'id');
 
         $currencies = Currency::enabled()->orderBy('name')->pluck('name', 'code')->toArray();
@@ -112,7 +112,7 @@ class Bills extends Controller
 
         $number = $this->getNextBillNumber();
 
-        return view('purchases.bills.create', compact('vendors', 'currencies', 'currency', 'items', 'taxes', 'categories', 'number'));
+        return view('purchases.bills.create', compact('vendors', 'currencies', 'currency', 'items', 'taxes', 'categories', 'number','bills'));
     }
 
     /**
@@ -296,7 +296,12 @@ class Bills extends Controller
     public function markReceive(Bill $bill)
     {
 
-        BillItem::receiveQty();
+        if (!BillItem::receiveQty()){
+            $message = trans('bills.messages.less_qty');
+            flash($message)->error();
+            return response('error');
+
+        }
         event(new \App\Events\Purchase\BillReceived($bill));
         $message = trans('bills.messages.marked_received');
 
@@ -321,6 +326,15 @@ class Bills extends Controller
         flash($message)->success();
 
         return redirect()->back();
+    }
+    //get bill total
+    public function billTotal(Bill $bill){
+        $currency = Currency::where('code', $bill->currency_code)->first();
+        $paid = 0;
+        if (!empty($bill->paid)) {
+            $paid = round($bill->total - $bill->paid, $currency->precision) ;
+        }
+       return response()->json($bill->totals[1]->amount+$paid);
     }
 
     /**

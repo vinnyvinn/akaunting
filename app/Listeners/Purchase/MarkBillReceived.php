@@ -20,9 +20,9 @@ class MarkBillReceived
     {
         if ($event->bill->status != 'partial') {
             $event->bill->status = 'received';
-
             $event->bill->save();
         }
+
 
         $this->dispatch(new CreateBillHistory($event->bill, 0, trans('bills.messages.marked_received')));
     }

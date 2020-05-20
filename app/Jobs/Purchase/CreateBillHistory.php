@@ -24,6 +24,7 @@ class CreateBillHistory extends Job
      */
     public function __construct($bill, $notify = 0, $description = null)
     {
+
         $this->bill = $bill;
         $this->notify = $notify;
         $this->description = $description;
