@@ -28,7 +28,7 @@
                     {{ Form::textGroup('invoice_number', trans('invoices.invoice_number'), 'file', ['required' => 'required'], $number) }}
 
                     {{ Form::textGroup('order_number', trans('invoices.order_number'), 'shopping-cart', []) }}
-
+                    {{ Form::selectGroup('warehouse_id', 'Warehouse', 'folder', $warehouses, null, ['required' => 'required']) }}
                     <div class="col-sm-12 mb-4">
                         @php $item_colspan = in_array(setting('localisation.discount_location', 'total'), ['item', 'both']) ? '6' : '5' @endphp
                         {!! Form::label('items', trans_choice($text_override['items'], 2), ['class' => 'form-control-label']) !!}

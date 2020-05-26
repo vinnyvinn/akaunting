@@ -18,6 +18,7 @@ Route::group([
         Route::get('item-groups/{item_group}/disable', 'ItemGroups@disable')->name('item-groups.disable');
         Route::resource('item-groups', 'ItemGroups', ['middleware' => ['money']]);
 
+        Route::get('items/{id}/details','Items@getDetails')->name('items.details');
         Route::resource('items', 'Items');
 
         Route::get('options/{option}/enable', 'Options@enable')->name('options.enable');
@@ -30,7 +31,11 @@ Route::group([
 
         Route::get('warehouses/{warehouse}/enable', 'Warehouses@enable')->name('warehouses.enable');
         Route::get('warehouses/{warehouse}/disable', 'Warehouses@disable')->name('warehouses.disable');
+        Route::get('warehouses/transfer', 'Warehouses@transferItems')->name('warehouses.transfer');
+        Route::post('warehouses/transfer/items', 'Warehouses@upadateItems')->name('warehouses.transfer.items');
+        Route::post('warehouses/{warehouse}/details', 'Warehouses@getDetails')->name('warehouses.details');
         Route::resource('warehouses', 'Warehouses');
+
 
         Route::get('histories/print', 'Histories@print')->name('histories.print');
         Route::get('histories/transactions', 'Histories@transactions')->name('histories.transactions');

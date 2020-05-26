@@ -9,6 +9,7 @@ import ReceiveBill from "../../components/ReceiveBill";
 require('./../../bootstrap');
 
 import Vue from 'vue';
+import VueToastr from 'vue-toastr';
 
 import DashboardPlugin from './../../plugins/dashboard-plugin';
 
@@ -18,10 +19,10 @@ import Form from './../../plugins/form';
 import Error from './../../plugins/error';
 import BulkAction from './../../plugins/bulk-action';
 import PayBill from "../../components/PayBill";
+Vue.use(VueToastr);
 
 window.eventBus = new Vue();
 window.axios = require('axios');
-
 
 window.site_url = process.env.MIX_BASE_URL;
 Vue.filter('toCurrency', function (value,cur='GBP') {
@@ -41,8 +42,8 @@ Vue.use(DashboardPlugin);
 
 const app = new Vue({
     components:{
-      'r-bill':ReceiveBill,
-       PayBill
+        'r-bill':ReceiveBill,
+        PayBill
     },
     el: '#app',
 
@@ -55,6 +56,7 @@ const app = new Vue({
             form: new Form('bill'),
             price:100,
             qty_receive:0,
+            warehouse_id:'',
             bulk_action: new BulkAction('bills'),
             totals: {
                 sub: 0,
@@ -86,7 +88,7 @@ const app = new Vue({
     },
 
     mounted() {
-      //this.colspan = document.getElementById("items").rows[0].cells.length - 1;
+        //this.colspan = document.getElementById("items").rows[0].cells.length - 1;
         this.form.items = [];
 
         if (this.form.method) {
@@ -108,6 +110,7 @@ const app = new Vue({
                     name: item.name,
                     price: (item.price).toFixed(2),
                     quantity: item.quantity,
+                    quantity_available: item.quantity,
                     tax_id: item.tax_id,
                     discount: item.discount_rate,
                     total: (item.total).toFixed(2)
@@ -123,25 +126,27 @@ const app = new Vue({
     },
 
     methods: {
+       onChangeWarehouse(wh_id) {
+       this.warehouse_id = wh_id;
+       },
         onChangeContact(contact_id) {
             if (this.edit.status && !this.edit.currency) {
                 this.edit.currency = true;
-
                 return;
             }
 
             axios.get(url + '/purchases/vendors/' + contact_id + '/currency')
-            .then(response => {
-                this.form.contact_name = response.data.name;
-                this.form.contact_email = response.data.email;
-                this.form.contact_tax_number = response.data.tax_number;
-                this.form.contact_phone = response.data.phone;
-                this.form.contact_address = response.data.address;
-                this.form.currency_code = response.data.currency_code;
-                this.form.currency_rate = response.data.currency_rate;
-            })
-            .catch(error => {
-            });
+                .then(response => {
+                    this.form.contact_name = response.data.name;
+                    this.form.contact_email = response.data.email;
+                    this.form.contact_tax_number = response.data.tax_number;
+                    this.form.contact_phone = response.data.phone;
+                    this.form.contact_address = response.data.address;
+                    this.form.currency_code = response.data.currency_code;
+                    this.form.currency_rate = response.data.currency_rate;
+                })
+                .catch(error => {
+                });
         },
 
         onCalculateTotal() {
@@ -296,7 +301,6 @@ const app = new Vue({
         onGetItem(event, index) {
             let name = event.target.value;
             this.form.items[index].show = false;
-
             axios.get(url + '/common/items/autocomplete', {
                 params: {
                     query: name,
@@ -304,26 +308,39 @@ const app = new Vue({
                     currency_code: this.form.currency_code
                 }
             })
-            .then(response => {
-                this.items = response.data;
+                .then(response => {
+                    this.items = response.data;
 
-                if (this.items.length) {
-                    this.form.items[index].show = true;
-                }
-            })
-            .catch(error => {
-            });
+                    if (this.items.length) {
+                        this.form.items[index].show = true;
+                    }
+                })
+                .catch(error => {
+                });
         },
 
         onSelectItem(item, index) {
-            let tax_id = (item.tax_id) ? [item.tax_id.toString()] : '';
+           var available_qty;
+           console.log(this.form)
+           if (this.warehouse_id ===''){
+               return this.$toastr.e('Please select warehouse first.')
+           }
 
-            this.form.items[index].item_id = item.id;
-            this.form.items[index].name = item.name;
-            this.form.items[index].price = (item.purchase_price).toFixed(2);
-            this.form.items[index].quantity = 1;
-            this.form.items[index].tax_id = tax_id;
-            this.form.items[index].total = (item.purchase_price).toFixed(2);
+           axios.get(`/common/items/${item.id}/${this.warehouse_id}/qty-available`)
+               .then(res => {
+                   available_qty = res.data;
+               })
+          setTimeout(()=>{
+              let tax_id = (item.tax_id) ? [item.tax_id.toString()] : '';
+
+              this.form.items[index].item_id = item.id;
+              this.form.items[index].name = item.name;
+              this.form.items[index].price = (item.purchase_price).toFixed(2);
+              this.form.items[index].quantity = 1;
+              this.form.items[index].quantity_available = available_qty;
+              this.form.items[index].tax_id = tax_id;
+              this.form.items[index].total = (item.purchase_price).toFixed(2);
+          },1000)
         },
 
         // remove bill item row => row_id = index
@@ -339,7 +356,6 @@ const app = new Vue({
             } else if (discount > 100) {
                 discount = 100;
             }
-
             document.getElementById('pre-discount').value = discount;
 
             this.form.discount = discount;
@@ -387,13 +403,13 @@ const app = new Vue({
                     account_id: account_id
                 }
             })
-            .then(response => {
-                this.transaction_form.currency = response.data.currency_name;
-                this.transaction_form.currency_code = response.data.currency_code;
-                this.transaction_form.currency_rate = response.data.currency_rate;
-            })
-            .catch(error => {
-            });
+                .then(response => {
+                    this.transaction_form.currency = response.data.currency_name;
+                    this.transaction_form.currency_code = response.data.currency_code;
+                    this.transaction_form.currency_rate = response.data.currency_rate;
+                })
+                .catch(error => {
+                });
         },
     }
 });

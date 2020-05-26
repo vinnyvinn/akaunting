@@ -59,6 +59,7 @@ class AdminMenu
 
             if ($user->can('read-inventory-warehouses')) {
                 $sub->url('inventory/warehouses', trans('inventory::general.menu.warehouses'), 5, $attr);
+                $sub->url('inventory/warehouses/transfer', 'Warehouse Transfer', 5, $attr);
             }
 
             if ($user->can('read-inventory-histories')) {

@@ -7,6 +7,7 @@ use App\Abstracts\Model;
 use App\Traits\Currencies;
 use Bkwld\Cloner\Cloneable;
 use Illuminate\Support\Facades\DB;
+use Modules\Inventory\Models\WarehouseItem;
 
 class BillItem extends Model
 {
@@ -158,14 +159,15 @@ class BillItem extends Model
     {
         unset($this->tax_id);
     }
-    public static function receiveQty(){
+    public static function receiveQty($bill){
         foreach (request()->get('items') as $item){
          if ($item['quantity_received'] <=0){
              return false;
-         }
+        }
         DB::table('bill_items')->where('id',$item['id'])->update(['quantity_received' =>$item['quantity_received']]);
+         WarehouseItem::where('item_id',BillItem::find($item['id'])->item_id)->where('warehouse_id',$bill->warehouse_id)->decrement('quantity',$item['quantity_received']);
         }
        Bill::updateTotal(self::find($item['id'])->bill_id,request()->get('total'));
-        return true;
+       return true;
     }
 }

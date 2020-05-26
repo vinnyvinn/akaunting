@@ -6,6 +6,7 @@ use App\Abstracts\Model;
 use App\Utilities\Overrider;
 use App\Models\Common\Item;
 use Faker\Factory;
+use Illuminate\Support\Str;
 use Modules\Inventory\Models\Item as InventoryItem;
 use Illuminate\Database\Seeder;
 
@@ -21,7 +22,6 @@ class Sku extends Seeder
         Model::unguard();
 
         $this->create();
-
         Model::reguard();
     }
 
@@ -35,7 +35,8 @@ class Sku extends Seeder
             'sale_price' => $faker->numberBetween(500,1000),
             'purchase_price' => $faker->numberBetween(50,450),
             'category_id' => 1,
-            'enabled' => 1
+            'enabled' => 1,
+            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
         ]);
         InventoryItem::createItem($item1);
         $item2 = Item::create([
@@ -45,7 +46,8 @@ class Sku extends Seeder
             'sale_price' => $faker->numberBetween(500,1000),
             'purchase_price' => $faker->numberBetween(50,450),
             'category_id' => 1,
-            'enabled' => 1
+            'enabled' => 1,
+            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
         ]);
         InventoryItem::createItem($item2);
         $item3 = Item::create([
@@ -55,7 +57,8 @@ class Sku extends Seeder
             'sale_price' => $faker->numberBetween(500,1000),
             'purchase_price' => $faker->numberBetween(50,450),
             'category_id' => 1,
-            'enabled' => 1
+            'enabled' => 1,
+            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
         ]);
         InventoryItem::createItem($item3);
         $item4 = Item::create([
@@ -65,7 +68,8 @@ class Sku extends Seeder
             'sale_price' => $faker->numberBetween(500,1000),
             'purchase_price' => $faker->numberBetween(50,450),
             'category_id' => 1,
-            'enabled' => 1
+            'enabled' => 1,
+            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
         ]);
         InventoryItem::createItem($item4);
         $item5 = Item::create([
@@ -75,7 +79,8 @@ class Sku extends Seeder
             'sale_price' => $faker->numberBetween(500,1000),
             'purchase_price' => $faker->numberBetween(50,450),
             'category_id' => 1,
-            'enabled' => 1
+            'enabled' => 1,
+            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
         ]);
         InventoryItem::createItem($item5);
 

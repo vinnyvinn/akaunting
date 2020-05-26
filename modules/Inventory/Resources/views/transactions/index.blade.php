@@ -27,9 +27,11 @@
                     <th class="col-md-1 border-0">Doc#</th>
                     <th class="col-md-2 border-0">{{ trans_choice('general.items', 1) }} </th>
                     <th class="col-md-2 border-0">{{ trans_choice('general.vendors', 1) }}</th>
-                    <th class="col-md-2 border-0">{{ trans('invoices.quantity') }}</th>
+                    <th class="col-md-1 border-0">{{ trans('invoices.quantity') }}</th>
+                    <th class="col-md-1 border-0">Qty In</th>
+                    <th class="col-md-1 border-0">Qty Out</th>
                     <th class="col-md-1 border-0">Cost</th>
-                    <th class="col-md-3 border-0">Stock Movement</th>
+                    <th class="col-md-2 border-0">Stock Movement</th>
                 </tr>
                 </thead>
 
@@ -38,21 +40,31 @@
                     <tr class="row align-items-center border-top-1">
                         <td class="col-sm-2 col-md-1 col-lg-1 col-xl-1 hidden-sm border-0">{{ Form::bulkActionGroup($item->stock_link, $item->name) }}</td>
                         <td class="col-md-1 border-0">
+                            @if($item->stk_movement=='IN')
                           <a href="{{ url('purchases/bills/' . $item->tx_id) }}">{{ $item->doc_no }}</a>
+                            @else
+                                <a href="{{ url('sales/invoices/' . $item->tx_id) }}">{{ $item->doc_no }}</a>
+                            @endif
                         </td>
                         <td class="col-md-2 border-0">
-                            <a href="{{ url('common/items/' . $item->stock_link) }}">{{ $item->item->name }}</a>
+                          <a href="{{ url('common/items/' . $item->stock_link) }}">{{ $item->item->name }}</a>
                         </td>
                         <td class="col-md-2 border-0">
                             <a href="{{ route('warehouses.show', [$item->warehouse_id]) }}">{{ $item->warehouse->name }}</a>
                         </td>
-                        <td class="col-md-2 border-0">
+                        <td class="col-md-1 border-0">
                             {{ $item->stk_qty }}
+                        </td>
+                        <td class="col-md-1 border-0">
+                            {{ $item->qty_in }}
+                        </td>
+                        <td class="col-md-1 border-0">
+                            {{ $item->qty_out }}
                         </td>
                         <td class="col-md-1 border-0">
                             {{ $item->stock_cost }}
                         </td>
-                        <td class="col-md-3 border-0">
+                        <td class="col-md-2 border-0">
                             {{ $item->stk_movement }}
                         </td>
                     </tr>

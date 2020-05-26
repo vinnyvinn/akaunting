@@ -18,7 +18,6 @@
                 </div>
                 <!-- /.box-body -->
             </div>
-
             <!-- Address Box -->
             <div class="card ">
                 <div class="card-header with-border">
@@ -58,24 +57,22 @@
                             <thead class="thead-light">
                             <tr class="row table-head-line">
                                 <th class="col-sm-1 col-md-1 col-lg-1 col-xl-1 hidden-sm">{{ Form::bulkActionAllGroup() }}</th>
-                                <th class="col-md-1 hidden-xs">{{ trans_choice('general.pictures', 1) }}</th>
-                                <th class="col-md-1">{{ trans('general.name') }}</th>
+                                 <th class="col-md-2">{{ trans('general.name') }}</th>
                                 <th class="col-md-2 hidden-xs">{{ trans_choice('general.categories', 1) }}</th>
-                                <th class="col-md-1 hidden-xs">{{ trans_choice('items.quantities', 1) }}</th>
+                                <th class="col-md-1 hidden-xs">Qty</th>
                                 <th class="col-md-2 text-right amount-space">{{ trans('items.sales_price') }}</th>
                                 <th class="col-md-2 hidden-xs text-right amount-space">{{ trans('items.purchase_price') }}</th>
                                 <th class="col-md-2 hidden-xs">{{ trans_choice('general.enabled', 1) }}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($warehouse->items as $item)
-                                @php $item = $item->item; @endphp
+                            @foreach($warehouse->items as $itemm)
+                                @php $item = $itemm->item;  @endphp
                                 <tr class="row align-items-center border-top-1">
                                     <td class="col-sm-1 col-md-1 col-lg-1 col-xl-1 hidden-sm border-0">{{ Form::bulkActionGroup($item->id, $item->name) }}</td>
-                                    <td class="col-md-1 hidden-xs border-0"><img src="{{ $item->picture ? Storage::url($item->picture->id) : asset('public/img/akaunting-logo-green.png') }}" class="img-thumbnail" width="50" alt="{{ $item->name }}"></td>
-                                    <td class="col-md-1 border-0" ><a href="{{ route('items.edit', $item->id) }}">{{ $item->name }}</a></td>
+                                    <td class="col-md-2 border-0" ><a href="{{ route('items.edit', $item->id) }}">{{ $item->name }}</a></td>
                                     <td class="col-md-2 hidden-xs border-0">{{ $item->category ? $item->category->name : trans('general.na') }}</td>
-                                    <td class="col-md-1 hidden-xs border-0">{{ $item->quantity }}</td>
+                                    <td class="col-md-1 hidden-xs border-0">{{ $itemm->quantity }}</td>
                                     <td class="col-md-2 text-right amount-space border-0">{{ money($item->sale_price, setting('default.currency'), true) }}</td>
                                     <td class="col-md-2 hidden-xs text-right amount-space border-0">{{ money($item->purchase_price, setting('default.currency'), true) }}</td>
                                     <td class="col-md-2 hidden-xs border-0">

@@ -62,25 +62,36 @@
     @stack('name_td_end')
 
     @stack('quantity_td_start')
-        <td class="border-right-0 border-bottom-0 w-10"
-            :class="[{'has-error': form.errors.has('items.' + index + '.quantity') }]">
-            @stack('quantity_input_start')
-                <input type="text"
-                    class="form-control text-center"
-                    :name="'items.' + index + '.quantity'"
-                    autocomplete="off"
-                    required="required"
-                    data-item="quantity"
-                    v-model="row.quantity"
-                    @input="onCalculateTotal"
-                    @change="form.errors.clear('items.' + index + '.quantity')">
+    <td class="border-right-0 border-bottom-0">
+        @stack('quantity_input_start')
+        <input type="text"
+               class="form-control text-center"
+               data-item="quantity_available"
+               disabled
+               v-model="row.quantity_available">
+        @stack('quantity_input_end')
+    </td>
+    @stack('quantity_td_start_end')
+    @stack('quantity_td_start')
+    <td class="border-right-0 border-bottom-0 w-10"
+        :class="[{'has-error': form.errors.has('items.' + index + '.quantity') }]">
+        @stack('quantity_input_start')
+        <input type="text"
+               class="form-control text-center"
+               :name="'items.' + index + '.quantity'"
+               autocomplete="off"
+               required="required"
+               data-item="quantity"
+               v-model="row.quantity"
+               @input="onCalculateTotal"
+               @change="form.errors.clear('items.' + index + '.quantity')">
 
-                <div class="invalid-feedback d-block"
-                    v-if="form.errors.has('items.' + index + '.quantity')"
-                    v-html="form.errors.get('items.' + index + '.quantity')">
-                </div>
-            @stack('quantity_input_end')
-        </td>
+        <div class="invalid-feedback d-block"
+             v-if="form.errors.has('items.' + index + '.quantity')"
+             v-html="form.errors.get('items.' + index + '.quantity')">
+        </div>
+        @stack('quantity_input_end')
+    </td>
     @stack('quantity_td_end')
 
     @stack('price_td_start')

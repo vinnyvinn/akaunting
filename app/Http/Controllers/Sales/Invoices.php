@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Sales;
 
 use App\Abstracts\Http\Controller;
+use App\Events\Purchase\TransactionBillReceived;
+use App\Events\Sale\TransactionInvoiceReceived;
 use App\Exports\Sales\Invoices as Export;
 use App\Http\Requests\Common\Import as ImportRequest;
 use App\Http\Requests\Sale\Invoice as Request;
@@ -16,6 +18,7 @@ use App\Models\Banking\Account;
 use App\Models\Common\Contact;
 use App\Models\Common\Item;
 use App\Models\Sale\Invoice;
+use App\Models\Sale\InvoiceItem;
 use App\Models\Setting\Category;
 use App\Models\Setting\Currency;
 use App\Models\Setting\Tax;
@@ -26,6 +29,7 @@ use App\Traits\Sales;
 use App\Utilities\Modules;
 use File;
 use Illuminate\Support\Facades\URL;
+use Modules\Inventory\Models\Warehouse;
 
 class Invoices extends Controller
 {
@@ -110,10 +114,11 @@ class Invoices extends Controller
         $taxes = Tax::enabled()->orderBy('name')->get();
 
         $categories = Category::type('income')->enabled()->orderBy('name')->pluck('name', 'id');
+        $warehouses = Warehouse::pluck('name','id');
 
         $number = $this->getNextInvoiceNumber();
 
-        return view('sales.invoices.create', compact('customers', 'currencies', 'currency', 'items', 'taxes', 'categories', 'number'));
+        return view('sales.invoices.create', compact('customers', 'currencies', 'currency', 'items', 'taxes', 'categories', 'number','warehouses'));
     }
 
     /**
@@ -284,8 +289,10 @@ class Invoices extends Controller
      */
     public function markSent(Invoice $invoice)
     {
-        event(new \App\Events\Sale\InvoiceSent($invoice));
 
+        InvoiceItem::updateQty($invoice);
+        event(new \App\Events\Sale\InvoiceSent($invoice));
+        event(new TransactionBillReceived($invoice,new InvoiceItem()));
         $message = trans('invoices.messages.marked_sent');
 
         flash($message)->success();

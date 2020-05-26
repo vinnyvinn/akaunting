@@ -17,6 +17,10 @@ use App\Models\Setting\Currency;
 use App\Models\Setting\Tax;
 use App\Traits\Uploads;
 
+use Modules\Inventory\Models\Warehouse;
+use Modules\Inventory\Models\WarehouseItem;
+
+
 class Items extends Controller
 {
     use Uploads;
@@ -51,14 +55,19 @@ class Items extends Controller
     public function create()
     {
         $categories = Category::type('item')->enabled()->orderBy('name')->pluck('name', 'id');
-
         $taxes = Tax::enabled()->orderBy('name')->get()->pluck('title', 'id');
 
         $currency = Currency::where('code', setting('default.currency', 'USD'))->first();
-
-        return view('common.items.create', compact('categories', 'taxes', 'currency'));
+        $warehouses = Warehouse::pluck('name','id');
+        return view('common.items.create', compact('categories', 'taxes', 'currency','warehouses'));
     }
 
+    //get available qty
+    public function qtyAvailable($item,$wh)
+    {
+      $qty = WarehouseItem::where('item_id',$item)->where('warehouse_id',$wh)->first()->quantity;
+      return response()->json($qty);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -67,6 +76,7 @@ class Items extends Controller
      */
     public function store(Request $request)
     {
+
         $response = $this->ajaxDispatch(new CreateItem($request));
 
         if ($response['success']) {
@@ -148,7 +158,6 @@ class Items extends Controller
     public function update(Item $item, Request $request)
     {
         $response = $this->ajaxDispatch(new UpdateItem($item, $request));
-
         if ($response['success']) {
             $response['redirect'] = route('items.index');
 

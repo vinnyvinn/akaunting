@@ -5,6 +5,7 @@ namespace App\Models\Sale;
 use App\Abstracts\Model;
 use App\Traits\Currencies;
 use Bkwld\Cloner\Cloneable;
+use Modules\Inventory\Models\WarehouseItem;
 
 class InvoiceItem extends Model
 {
@@ -161,5 +162,14 @@ class InvoiceItem extends Model
     public function onCloning($src, $child = null)
     {
         unset($this->tax_id);
+    }
+
+    public static function updateQty($invoice){
+        \Log::info('---warehouse--');
+        \Log::info($invoice->warehouse_id);
+        \Log::info('---end---');
+        foreach ($invoice->items as $item){
+            WarehouseItem::where('item_id',$item->item_id)->where('warehouse_id',$invoice->warehouse_id)->decrement('quantity',$item->quantity);
+        }
     }
 }

@@ -25,7 +25,7 @@
 
                     {{ Form::selectAddNewGroup('tax_id', trans_choice('general.taxes', 1), 'percentage', $taxes, setting('default.tax'), []) }}
 
-                    {{ Form::textareaGroup('description', trans('general.description')) }}
+                    {{ Form::textareaGroup('description', trans('general.description'),['required'=>'true']) }}
 
                     {{ Form::textGroup('sale_price', trans('items.sales_price'), 'money-bill-wave') }}
 

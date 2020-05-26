@@ -34,6 +34,9 @@ class Event extends Provider
         'App\Events\Purchase\BillReceived' => [
             'App\Listeners\Purchase\MarkBillReceived',
         ],
+        'App\Events\Purchase\TransactionBillReceived' => [
+            'App\Listeners\Purchase\CreateTransactionReceived',
+        ],
         'App\Events\Purchase\BillCancelled' => [
             'App\Listeners\Purchase\MarkBillCancelled',
         ],

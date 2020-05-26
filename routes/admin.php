@@ -36,6 +36,7 @@ Route::group(['prefix' => 'common'], function () {
     Route::get('items/export', 'Common\Items@export')->name('items.export');
     Route::get('items/{item}/enable', 'Common\Items@enable')->name('items.enable');
     Route::get('items/{item}/disable', 'Common\Items@disable')->name('items.disable');
+    Route::get('items/{item}/{warehouse}/qty-available', 'Common\Items@qtyAvailable')->name('items.qty-available');
     Route::resource('items', 'Common\Items', ['middleware' => ['money']]);
 
     Route::resource('search', 'Common\Search');

@@ -19,6 +19,7 @@
             <div class="card-body">
                 <div class="row">
                     {{ Form::textGroup('name', trans('general.name'), 'tag') }}
+                    {{ Form::textGroup('sku', trans('general.sku'), 'tag') }}
 
                     {{ Form::selectAddNewGroup('tax_id', trans_choice('general.taxes', 1), 'percentage', $taxes, $item->tax_id, ['path' => route('modals.taxes.create'), 'field' => ['key' => 'id', 'value' => 'title']]) }}
 

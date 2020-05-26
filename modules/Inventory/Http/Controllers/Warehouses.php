@@ -3,9 +3,14 @@
 namespace Modules\Inventory\Http\Controllers;
 
 use App\Abstracts\Http\Controller;
+use App\Models\Common\Item;
+use App\Models\Setting\Category;
+use App\Models\Setting\Currency;
+use App\Models\Setting\Tax;
 use Illuminate\Http\Request;
 use Modules\Inventory\Http\Requests\Warehouse as ModulesWarehouse;
 use Modules\Inventory\Models\Warehouse;
+use Modules\Inventory\Models\WarehouseItem;
 
 
 class Warehouses extends Controller
@@ -30,6 +35,7 @@ class Warehouses extends Controller
      */
     public function show(Warehouse $warehouse)
     {
+
         return view('inventory::warehouses.show', compact('warehouse'));
     }
 
@@ -43,6 +49,35 @@ class Warehouses extends Controller
         return view('inventory::warehouses.create');
     }
 
+    //transfer warehouse items
+
+    public function transferItems()
+    {
+        $items = Item::pluck('name','id');
+        return view('inventory::warehouses.transfer',compact('items' ));
+    }
+
+    //get warehouses
+    public function getDetails($warehouse)
+    {
+       $item_details = WarehouseItem::where('warehouse_id',$warehouse)->where('item_id',request()->get('item_id'))->first()->item;
+       $item_details->quantity = WarehouseItem::where('warehouse_id',$warehouse)->where('item_id',request()->get('item_id'))->first()->quantity;
+       $warehouses = Warehouse::whereIn('id',array_keys(request()->get('whs')))->where('id','!=',$warehouse)->pluck('name','id');
+       return response()->json(['warehouses'=>$warehouses,'item_details'=>$item_details]);
+    }
+
+    //init items transfer
+    public function upadateItems()
+    {
+        if (request()->get('item_id') =='' || request()->get('to_warehouse')==''){
+            flash('Please Select Item and Warehouse to')->error();
+            return response('error');
+        }
+        WarehouseItem::where('item_id',request()->get('item_id'))->where('warehouse_id',request()->get('from_warehouse'))->decrement('quantity',request()->get('item_quantity'));
+        WarehouseItem::where('item_id',request()->get('item_id'))->where('warehouse_id',request()->get('to_warehouse'))->increment('quantity',request()->get('item_quantity'));
+        flash('Items successfully transferred')->success();
+       return response()->json(request()->all());
+    }
     /**
      * Store a newly created resource in storage.
      *

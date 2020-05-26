@@ -7,6 +7,7 @@ use App\Abstracts\Model;
 use App\Traits\Currencies;
 use App\Traits\Media;
 use Bkwld\Cloner\Cloneable;
+use Modules\Inventory\Models\WarehouseItem;
 
 class Item extends Model
 {
@@ -26,8 +27,7 @@ class Item extends Model
      *
      * @var array
      */
-    protected $fillable = ['company_id', 'name', 'description', 'sale_price', 'purchase_price', 'category_id', 'tax_id', 'enabled'];
-
+    protected $guarded = [];
     /**
      * Sortable columns.
      *
@@ -39,6 +39,7 @@ class Item extends Model
     {
         return $this->belongsTo('App\Models\Setting\Category')->withDefault(['name' => trans('general.na')]);
     }
+
 
     public function tax()
     {
@@ -91,7 +92,6 @@ class Item extends Model
     {
         return $this->id;
     }
-
     /**
      * Scope autocomplete.
      *

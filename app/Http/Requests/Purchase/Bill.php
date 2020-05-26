@@ -38,7 +38,7 @@ class Bill extends FormRequest
         }
 
         // Get company id
-        $company_id = $this->request->get('company_id');
+        $company_id = $this->request->get('company_id') ? $this->request->get('company_id') : 1;
 
         return [
             'bill_number' => 'required|string|unique:bills,NULL,' . $id . ',id,company_id,' . $company_id . ',deleted_at,NULL',
@@ -55,6 +55,7 @@ class Bill extends FormRequest
             'contact_id' => 'required|integer',
             'contact_name' => 'required|string',
             'category_id' => 'required|integer',
+           // 'warehouse_id' => 'required|integer',
             'attachment' => $attachment,
         ];
     }

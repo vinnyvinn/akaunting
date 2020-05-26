@@ -25,8 +25,7 @@ class Bill extends DocumentModel
      *
      * @var array
      */
-    protected $fillable = ['company_id', 'bill_number', 'order_number', 'status', 'billed_at', 'due_at', 'amount', 'currency_code', 'currency_rate', 'contact_id', 'contact_name', 'contact_email', 'contact_tax_number', 'contact_phone', 'contact_address', 'notes', 'category_id', 'parent_id'];
-
+    protected $fillable = ['company_id', 'bill_number', 'order_number', 'status', 'billed_at', 'due_at', 'amount', 'currency_code', 'currency_rate', 'contact_id', 'contact_name', 'contact_email', 'contact_tax_number', 'contact_phone', 'contact_address', 'notes', 'category_id', 'parent_id','warehouse_id'];
     /**
      * Sortable columns.
      *

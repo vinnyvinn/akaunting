@@ -207,6 +207,8 @@ CoreV200 extends Migration
             $table->string('tx_id');
             $table->date('tx_date');
             $table->integer('stk_qty');
+            $table->integer('qty_out')->nullable()->default(0);
+            $table->integer('qty_in')->nullable()->default(0);
             $table->integer('warehouse_id');
             $table->double('stock_cost');
             $table->enum('stk_movement',['IN','OUT']);

@@ -55,6 +55,7 @@ class Invoice extends FormRequest
             'contact_id' => 'required|integer',
             'contact_name' => 'required|string',
             'category_id' => 'required|integer',
+            'warehouse_id' => 'required|integer',
             'attachment' => $attachment,
         ];
     }

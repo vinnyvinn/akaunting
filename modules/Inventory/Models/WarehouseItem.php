@@ -5,6 +5,7 @@ namespace Modules\Inventory\Models;
 use Modules\Inventory\Models\Model;
 use Bkwld\Cloner\Cloneable;
 use Illuminate\Notifications\Notifiable;
+use Faker\Factory;
 
 
 class WarehouseItem extends Model
@@ -18,7 +19,7 @@ class WarehouseItem extends Model
      *
      * @var array
      */
-    protected $fillable = ['company_id', 'warehouse_id', 'item_id'];
+    protected $guarded = [];
 
     public function stock()
     {
@@ -35,10 +36,12 @@ class WarehouseItem extends Model
         return $this->belongsTo('App\Models\Common\Item');
     }
     public static function createWarehouse($inv,$item){
+        $faker = Factory::create();
         self::create([
             'company_id' => $inv->company_id,
             'warehouse_id' => setting('inventory.default_warehouse'),
             'item_id' => $item->id,
+            'quantity' => $faker->numberBetween(5,20)
         ]);
         History::createHistory($inv,$item);
     }

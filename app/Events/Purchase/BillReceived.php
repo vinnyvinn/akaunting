@@ -17,6 +17,7 @@ class BillReceived
      */
     public function __construct($bill)
     {
+
         $this->bill = $bill;
     }
 }

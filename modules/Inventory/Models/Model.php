@@ -3,6 +3,7 @@
 namespace Modules\Inventory\Models;
 
 use App\Abstracts\Model as AppModel;
+//use Illuminate\Database\Eloquent\Model as AppModel;
 use Request;
 use Route;
 

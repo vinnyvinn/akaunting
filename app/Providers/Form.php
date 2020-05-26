@@ -38,6 +38,15 @@ class Form extends Provider
         Facade::component('textGroup', 'partials.form.text_group', [
             'name', 'text', 'icon', 'attributes' => ['required' => 'required'], 'value' => null, 'col' => 'col-md-6', 'group_class' => null
         ]);
+        Facade::component('textItemDescGroup', 'partials.form.text_group_item_descr', [
+            'name', 'text', 'icon', 'attributes' => ['required' => 'required'], 'value' => null, 'col' => 'col-md-6', 'group_class' => null
+        ]);
+        Facade::component('textFromWhCostGroup', 'partials.form.text_group_fr_wh_cost', [
+            'name', 'text', 'icon', 'attributes' => ['required' => 'required'], 'value' => null, 'col' => 'col-md-6', 'group_class' => null
+        ]);
+        Facade::component('textToWhCostGroup', 'partials.form.text_group_to_wh_cost', [
+            'name', 'text', 'icon', 'attributes' => ['required' => 'required'], 'value' => null, 'col' => 'col-md-6', 'group_class' => null
+        ]);
 
         Facade::component('emailGroup', 'partials.form.email_group', [
             'name', 'text', 'icon', 'attributes' => ['required' => 'required'], 'value' => null, 'col' => 'col-md-6', 'group_class' => null
@@ -51,6 +60,14 @@ class Form extends Provider
             'name', 'text', 'icon', 'attributes' => ['required' => 'required'], 'value' => null, 'col' => 'col-md-6', 'group_class' => null
         ]);
 
+        Facade::component('numberQtyAvailableGroup', 'partials.form.number_group_item_qty', [
+            'name', 'text', 'icon', 'attributes' => ['required' => 'required'], 'value' => null, 'col' => 'col-md-6', 'group_class' => null
+        ]);
+        Facade::component('numberQtyGroup', 'partials.form.number_group_qty', [
+            'name', 'text', 'icon', 'attributes' => ['required' => 'required'], 'value' => null, 'col' => 'col-md-6', 'group_class' => null
+        ]);
+
+
         Facade::component('multiSelectGroup', 'partials.form.multi_select_group', [
             'name', 'text', 'icon', 'values', 'selected' => null, 'attributes' => ['required' => 'required'], 'col' => 'col-md-6', 'group_class' => null
         ]);
@@ -60,6 +77,18 @@ class Form extends Provider
         ]);
 
         Facade::component('selectGroup', 'partials.form.select_group', [
+            'name', 'text', 'icon', 'values', 'selected' => null, 'attributes' => ['required' => 'required'], 'col' => 'col-md-6', 'group_class' => null
+        ]);
+
+        Facade::component('selectFromWhGroup', 'partials.form.select_group_from_wh', [
+            'name', 'text', 'icon', 'values', 'selected' => null, 'attributes' => ['required' => 'required'], 'col' => 'col-md-6', 'group_class' => null
+        ]);
+
+        Facade::component('selectToWhGroup', 'partials.form.select_group_to_wh', [
+            'name', 'text', 'icon', 'values', 'selected' => null, 'attributes' => ['required' => 'required'], 'col' => 'col-md-6', 'group_class' => null
+        ]);
+
+        Facade::component('selectItemGroup', 'partials.form.select_group_item', [
             'name', 'text', 'icon', 'values', 'selected' => null, 'attributes' => ['required' => 'required'], 'col' => 'col-md-6', 'group_class' => null
         ]);
         Facade::component('selectBillGroup', 'partials.form.select_group_bill', [

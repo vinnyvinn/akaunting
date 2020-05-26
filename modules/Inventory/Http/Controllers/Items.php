@@ -185,6 +185,13 @@ class Items extends Controller
         return redirect()->route('items.edit', $clone->id);
     }
 
+    //item details
+    public function getDetails($item)
+    {
+        $inv_item = ItemInventory::where('item_id',$item)->first();
+        $warehouses= $inv_item->warehouse->pluck('warehouse.name','warehouse.id');
+      return response()->json($warehouses);
+    }
     /**
      * Import the specified resource.
      *

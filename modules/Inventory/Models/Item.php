@@ -46,7 +46,7 @@ class Item extends Model
         $inv_item = self::create([
             'company_id' => setting('inventory.default_warehouse'),
             'item_id' => $item->id,
-            'sku' =>  'sku0'.$faker->randomDigitNotNull,
+            'sku' =>  $item->sku,
             'opening_stock' => $faker->numberBetween(10,100),
             'opening_stock_value' => $faker->numberBetween(600,2000),
             'reorder_level' => 0

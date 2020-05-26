@@ -25,7 +25,7 @@ class Invoice extends DocumentModel
      *
      * @var array
      */
-    protected $fillable = ['company_id', 'invoice_number', 'order_number', 'status', 'invoiced_at', 'due_at', 'amount', 'currency_code', 'currency_rate', 'contact_id', 'contact_name', 'contact_email', 'contact_tax_number', 'contact_phone', 'contact_address', 'notes', 'category_id', 'parent_id', 'footer'];
+    protected $fillable = ['company_id', 'invoice_number', 'order_number', 'status', 'invoiced_at', 'due_at', 'amount', 'currency_code', 'currency_rate', 'contact_id', 'contact_name', 'contact_email', 'contact_tax_number', 'contact_phone', 'contact_address', 'notes', 'category_id', 'parent_id', 'footer','warehouse_id'];
 
     /**
      * Sortable columns.

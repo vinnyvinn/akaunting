@@ -23,6 +23,15 @@ import BillSelect from "../components/BillSelect";
 import BillMoney from "../components/BillMoney";
 import OutstandingAmount from "../components/OutstandingAmount";
 import VendorSelect from "../components/VendorSelect";
+import ItemSelect from "../components/ItemSelect";
+import SelectFromWarehouse from "../components/SelectFromWarehouse";
+import SelectToWarehouse from "../components/SelectToWarehouse";
+import QtyAvailable from "../components/QtyAvailable";
+import FromWhCost from "../components/FromWhCost";
+import ToWhCost from "../components/ToWhCost";
+import ItemDescription from "../components/ItemDescription";
+import ItemQuantity from "../components/ItemQuantity";
+import TransferItem from "../components/TransferItem";
 
 export default {
     components: {
@@ -39,6 +48,15 @@ export default {
         BillMoney,
         VendorSelect,
         OutstandingAmount,
+        ItemSelect,
+        SelectFromWarehouse,
+        SelectToWarehouse,
+        QtyAvailable,
+        FromWhCost,
+        ToWhCost,
+        ItemDescription,
+        ItemQuantity,
+        TransferItem,
         AkauntingHtmlEditor,
         [Select.name]: Select,
         [Option.name]: Option,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Purchases;
 
 use App\Abstracts\Http\Controller;
+use App\Events\Purchase\TransactionBillReceived;
 use App\Exports\Purchases\Bills as Export;
 use App\Http\Requests\Common\Import as ImportRequest;
 use App\Http\Requests\Purchase\Bill as Request;
@@ -26,6 +27,7 @@ use App\Traits\DateTime;
 use App\Traits\Purchases;
 use App\Traits\Uploads;
 use App\Utilities\Modules;
+use Modules\Inventory\Models\Warehouse;
 
 class Bills extends Controller
 {
@@ -107,12 +109,12 @@ class Bills extends Controller
         $items = Item::enabled()->orderBy('name')->get();
 
         $taxes = Tax::enabled()->orderBy('name')->get();
-
+        $warehouses = Warehouse::pluck('name','id');
         $categories = Category::type('expense')->enabled()->orderBy('name')->pluck('name', 'id');
 
         $number = $this->getNextBillNumber();
 
-        return view('purchases.bills.create', compact('vendors', 'currencies', 'currency', 'items', 'taxes', 'categories', 'number','bills'));
+        return view('purchases.bills.create', compact('vendors', 'currencies', 'currency', 'items', 'taxes', 'categories', 'number','bills','warehouses'));
     }
 
     /**
@@ -124,6 +126,7 @@ class Bills extends Controller
      */
     public function store(Request $request)
     {
+
         $response = $this->ajaxDispatch(new CreateBill($request));
 
         if ($response['success']) {
@@ -295,14 +298,14 @@ class Bills extends Controller
 
     public function markReceive(Bill $bill)
     {
-
-        if (!BillItem::receiveQty()){
+        if (!BillItem::receiveQty($bill)){
             $message = trans('bills.messages.less_qty');
             flash($message)->error();
             return response('error');
 
         }
         event(new \App\Events\Purchase\BillReceived($bill));
+        event(new TransactionBillReceived($bill,new BillItem()));
         $message = trans('bills.messages.marked_received');
 
         flash($message)->success();

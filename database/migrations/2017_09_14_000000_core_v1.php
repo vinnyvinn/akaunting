@@ -45,6 +45,7 @@ class CoreV1 extends Migration
             $table->double('currency_rate', 15, 8);
             $table->integer('category_id')->default(1);
             $table->integer('vendor_id');
+            $table->integer('warehouse_id')->nullable();
             $table->string('vendor_name');
             $table->string('vendor_email')->nullable();
             $table->string('vendor_tax_number')->nullable();
@@ -186,6 +187,7 @@ class CoreV1 extends Migration
             $table->double('currency_rate', 15, 8);
             $table->integer('category_id')->default(1);
             $table->integer('customer_id');
+            $table->integer('warehouse_id')->nullable();
             $table->string('customer_name');
             $table->string('customer_email')->nullable();
             $table->string('customer_tax_number')->nullable();
@@ -275,6 +277,7 @@ class CoreV1 extends Migration
             $table->integer('company_id');
             $table->string('name');
             $table->string('sku');
+            $table->text('picture')->nullable();
             $table->text('description')->nullable();
             $table->double('sale_price', 15, 4);
             $table->double('purchase_price', 15, 4);

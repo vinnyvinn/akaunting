@@ -68,6 +68,7 @@
         "vue": "^2.5.17",
         "vue-loading-overlay": "^3.2.0",
         "vue-template-compiler": "^2.6.10",
+        "vue-toastr": "^2.1.2",
         "vue2-transitions": "^0.3.0"
     },
     "postcss": {
