@@ -53,6 +53,7 @@ return [
         'marked_paid'       => 'Bill marked as paid!',
         'marked_cancelled'  => 'Bill marked as cancelled!',
         'less_qty'  => 'Received Quantity cannot be 0!',
+        'qty_should_equal'  => 'Received Quantity cannot be greater than ordered quantity.',
         'draft'             => 'This is a <b>DRAFT</b> bill and will be reflected to charts after it gets received.',
 
         'status' => [

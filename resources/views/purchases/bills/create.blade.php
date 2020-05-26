@@ -29,7 +29,6 @@
 
                 {{ Form::textGroup('order_number', trans('bills.order_number'), 'shopping-cart',[]) }}
                 {{ Form::selectGroup('warehouse_id', 'Warehouse', 'folder', $warehouses, null, ['required' => 'required','change'=>'onChangeWarehouse']) }}
-
                 <div class="col-sm-12 mb-4">
                     @php $item_colspan = in_array(setting('localisation.discount_location', 'total'), ['item', 'both']) ? '6' : '5' @endphp
                     {!! Form::label('items', trans_choice('general.items', 2), ['class' => 'form-control-label']) !!}

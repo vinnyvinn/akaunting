@@ -27,6 +27,7 @@ use App\Traits\DateTime;
 use App\Traits\Purchases;
 use App\Traits\Uploads;
 use App\Utilities\Modules;
+use Illuminate\Support\Facades\DB;
 use Modules\Inventory\Models\Warehouse;
 
 class Bills extends Controller
@@ -298,8 +299,15 @@ class Bills extends Controller
 
     public function markReceive(Bill $bill)
     {
-        if (!BillItem::receiveQty($bill)){
+        $billItem =BillItem::receiveQty($bill);
+        if ($billItem ==0){
             $message = trans('bills.messages.less_qty');
+            flash($message)->error();
+            return response('error');
+
+        }
+        if ($billItem ==-1){
+            $message = trans('bills.messages.qty_should_equal');
             flash($message)->error();
             return response('error');
 

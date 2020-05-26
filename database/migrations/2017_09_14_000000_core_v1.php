@@ -82,6 +82,7 @@ class CoreV1 extends Migration
             $table->string('sku')->nullable();
             $table->double('quantity', 7, 2);
             $table->double('quantity_received', 7, 2)->nullable()->default(0);
+            $table->double('quantity_update', 7, 2)->nullable()->default(0);
             $table->double('price', 15, 4);
             $table->double('total', 15, 4);
             $table->float('tax', 15, 4)->default('0.0000');
