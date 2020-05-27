@@ -18,13 +18,52 @@
         <td class="border-right-0 border-bottom-0"
             :class="[{'has-error': form.errors.has('items.' + index + '.name') }]">
             @stack('name_input_start')
+{{--            <custom-select--}}
+{{--                    :form-classes="[{'has-error': form.errors.has('items.' + index + '.name')}]"--}}
+{{--                    :placeholder="'{{ trans('general.type_item_name') }}'"--}}
+{{--                    :name="'item_id'"--}}
+{{--                    :options="{{ json_encode($itemss) }}"--}}
+{{--                    :value="form.items[index].item_id"--}}
+{{--                    :model="form.items[index].item_id"--}}
+{{--                    :add-new="{{ json_encode([--}}
+{{--            'status' => true,--}}
+{{--            'text' => trans('general.add_new'),--}}
+{{--            'path' => route('modals.items.create'),--}}
+{{--            'type' => 'modal',--}}
+{{--            'field' => [--}}
+{{--                'key' => 'id',--}}
+{{--                'value' => 'name'--}}
+{{--            ],--}}
+{{--            'new_text' => trans('modules.new'),--}}
+{{--            'buttons' => [--}}
+{{--                'cancel' => [--}}
+{{--                    'text' => trans('general.cancel'),--}}
+{{--                    'class' => 'btn-outline-secondary'--}}
+{{--                ],--}}
+{{--                'confirm' => [--}}
+{{--                    'text' => trans('general.save'),--}}
+{{--                    'class' => 'btn-success'--}}
+{{--                ]--}}
+{{--            ]--}}
+{{--        ])}}"--}}
+{{--                    @interface="row.item_id = $event"--}}
+{{--                    @label="row.name = $event"--}}
+{{--                    @option="onSelectItem($event, index)"--}}
+{{--                    @change="form.errors.clear('items.' + index + '.name')"--}}
+{{--                    :currency-code="form.currency_code"--}}
+{{--                    :form-error="form.errors.get('items.' + index + '.name')"--}}
+{{--                    :loading-text="'{{ trans('general.loading') }}'"--}}
+{{--                    :no-data-text="'{{ trans('general.no_data') }}'"--}}
+{{--                    :no-matching-data-text="'{{ trans('general.no_matching_data') }}'"--}}
+{{--            ></custom-select>--}}
+
             <akaunting-select-remote
-                :form-classes="[{'has-error': form.errors.has('items.' + index + '.name')}]"
-                :placeholder="'{{ trans('general.type_item_name') }}'"
-                :name="'item_id'"
-                :options="{{ json_encode($items) }}"
-                :value="form.items[index].item_id"
-                :add-new="{{ json_encode([
+                    :form-classes="[{'has-error': form.errors.has('items.' + index + '.name')}]"
+                    :placeholder="'{{ trans('general.type_item_name') }}'"
+                    :name="'item_id'"
+                    :options="{{ json_encode($items) }}"
+                    :value="form.items[index].item_id"
+                    :add-new="{{ json_encode([
                     'status' => true,
                     'text' => trans('general.add_new'),
                     'path' => route('modals.items.store'),
@@ -35,17 +74,16 @@
                     ],
                     'new_text' => trans('modules.new'),
                 ])}}"
-                @interface="row.item_id = $event"
-                @label="row.name = $event"
-                @option="onSelectItem($event, index)"
-                @change="form.errors.clear('items.' + index + '.name')"
-                :remote-action="'{{ route('items.autocomplete') }}'"
-                remote-type="bill"
-                :currency-code="form.currency_code"
-                :form-error="form.errors.get('items.' + index + '.name')"
-                :loading-text="'{{ trans('general.loading') }}'"
-                :no-data-text="'{{ trans('general.no_data') }}'"
-                :no-matching-data-text="'{{ trans('general.no_matching_data') }}'"
+                    @interface="row.item_id = $event"
+                    @label="row.name = $event"
+                    @option="onSelectItem($event, index)"
+                    @change="form.errors.clear('items.' + index + '.name')"
+
+                    :currency-code="form.currency_code"
+                    :form-error="form.errors.get('items.' + index + '.name')"
+                    :loading-text="'{{ trans('general.loading') }}'"
+                    :no-data-text="'{{ trans('general.no_data') }}'"
+                    :no-matching-data-text="'{{ trans('general.no_matching_data') }}'"
             ></akaunting-select-remote>
             <input type="hidden"
                 data-item="name"
@@ -143,6 +181,7 @@
     @endif
 
     @stack('taxes_td_start')
+
         <td class="border-right-0 border-bottom-0"
             :class="[{'has-error': form.errors.has('items.' + index + '.tax_id') }]">
             @stack('tax_id_input_start')

@@ -320,9 +320,10 @@ const app = new Vue({
         },
 
         onSelectItem(item, index) {
+
            var available_qty;
-           console.log(this.form)
            if (this.warehouse_id ===''){
+               this.form.items[index].item_id = '';
                return this.$toastr.e('Please select warehouse first.')
            }
 
@@ -331,15 +332,21 @@ const app = new Vue({
                    available_qty = res.data;
                })
           setTimeout(()=>{
-              let tax_id = (item.tax_id) ? [item.tax_id.toString()] : '';
+              if (available_qty==='error'){
+                  this.form.items[index].item_id = '';
+                  return this.$toastr.e('Sorry,the selected item was not found in the warehouse selected.')
+              }
+              else {
+                  let tax_id = (item.tax_id) ? [item.tax_id.toString()] : '';
 
-              this.form.items[index].item_id = item.id;
-              this.form.items[index].name = item.name;
-              this.form.items[index].price = (item.purchase_price).toFixed(2);
-              this.form.items[index].quantity = 1;
-              this.form.items[index].quantity_available = available_qty;
-              this.form.items[index].tax_id = tax_id;
-              this.form.items[index].total = (item.purchase_price).toFixed(2);
+                  this.form.items[index].item_id = item.id;
+                  this.form.items[index].name = item.name;
+                  this.form.items[index].price = (item.purchase_price).toFixed(2);
+                  this.form.items[index].quantity = 1;
+                  this.form.items[index].quantity_available = available_qty;
+                  this.form.items[index].tax_id = tax_id;
+                  this.form.items[index].total = (item.purchase_price).toFixed(2);
+              }
           },1000)
         },
 

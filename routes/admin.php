@@ -227,6 +227,8 @@ Route::group(['as' => 'modals.', 'prefix' => 'modals'], function () {
     Route::resource('currencies', 'Modals\Currencies');
     Route::resource('customers', 'Modals\Customers');
     Route::resource('vendors', 'Modals\Vendors');
+    Route::resource('warehouses', 'Modals\Warehouses');
+    Route::resource('projects', 'Modals\Projects');
     Route::resource('items', 'Modals\Items');
     Route::patch('invoice-templates', 'Modals\InvoiceTemplates@update')->name('invoice-templates.update');
     Route::resource('invoices/{invoice}/transactions', 'Modals\InvoiceTransactions', ['names' => 'invoices.invoice.transactions', 'middleware' => ['date.format', 'money']]);

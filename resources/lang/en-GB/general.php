@@ -57,7 +57,7 @@ return [
     'welcome'               => 'Welcome',
     'banking'               => 'Banking',
     'general'               => 'General',
-    'sku'                   => 'Sku',
+    'sku'                   => 'SKU',
     'no_records'            => 'No records.',
     'date'                  => 'Date',
     'amount'                => 'Amount',

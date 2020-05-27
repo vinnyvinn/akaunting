@@ -7,8 +7,9 @@
                     <tbody>
                     <tr class="d-flex flex-nowrap">
                         <th class="col-xs-4 col-sm-3">Items</th>
-                        <th class="col-xs-2 col-sm-1">Quantity</th>
-                        <th class="col-xs-2 col-sm-3 text-center">Quantity receive</th>
+                        <th class="col-xs-2 col-sm-1">Ordered Qty</th>
+                        <th class="col-xs-2 col-sm-2 text-center">Received Qty</th>
+                        <th class="col-xs-2 col-sm-1 text-center">Qty</th>
                         <th class="col-xs-2 col-sm-1 text-center">Rem.Qty</th>
                         <th class="col-sm-1 text-center">Price</th>
                         <th class="col-xs-1 col-sm-3 text-center">Total</th>
@@ -18,7 +19,8 @@
                             {{ item.name }}
                         </td>
                         <td class="col-xs-2 col-sm-1 total_qty">{{ item.quantity }}</td>
-                        <td class="col-xs-2 col-sm-3 text-right"> <input type="text" class="form-control qty_receive" v-model="item.quantity_received" @keyup="item_qty=item.quantity_received;item_id=item.id"></td>
+                        <td class="col-xs-2 col-sm-1 text-center">{{ item.qty_r }}</td>
+                        <td class="col-xs-2 col-sm-2 text-right"> <input type="text" class="form-control qty_receive" v-model="item.quantity_received" @keyup="item_qty=item.quantity_received;item_id=item.id"></td>
                         <td class="col-xs-2 col-sm-1 text-center">{{ item.qty_rem }}</td>
                         <td class="col-sm-1 text-blue  text-center">{{item.price | toCurrency(bill.currency_code)}}</td>
                          <td class="col-xs-1 col-sm-3 text-center">{{item.total | toCurrency(bill.currency_code)}}</td>
@@ -110,7 +112,7 @@
                 }else {
                     this.all_items[i]['quantity_received'] = parseInt(this.item_qty);
                 }
-                this.all_items[i]['qty_rem'] = this.all_items[i]['quantity'] - this.all_items[i]['quantity_received'];
+               // this.all_items[i]['qty_rem'] = this.all_items[i]['quantity'] - this.all_items[i]['quantity_received'];
                 this.all_items[i]['total'] = parseInt(this.item_qty)*this.all_items[i]['price'];
             }
             }
@@ -123,7 +125,7 @@
         },
     created() {
          for(let i=0;i<this.items.length;i++){
-             this.all_items.push({id:this.items[i]['id'],name:this.items[i]['name'],quantity:this.items[i]['quantity'],quantity_received:this.items[i]['quantity_received'],qty_rem:this.items[i]['quantity'] -this.items[i]['quantity_received'],price:this.items[i]['price'],
+             this.all_items.push({id:this.items[i]['id'],name:this.items[i]['name'],quantity:this.items[i]['quantity'],quantity_received:this.items[i]['quantity_received'],qty_r:this.items[i]['quantity_received'],qty_rem:this.items[i]['quantity'] -this.items[i]['quantity_received'],price:this.items[i]['price'],
                  total:this.items[i]['total']});
          }
 

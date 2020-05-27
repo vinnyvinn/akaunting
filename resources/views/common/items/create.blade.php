@@ -17,7 +17,6 @@
             <div class="card-body">
                 <div class="row">
                     {{ Form::textGroup('name', trans('general.name'), 'tag') }}
-
                     {{ Form::multiSelectGroup('warehouse_id', trans_choice('general.warehouses', 1), 'credit-card', $warehouses) }}
                     {{ Form::numberGroup('quantity', trans('general.quantity'), 'file', ['required'=>'required'],1) }}
                     {{ Form::textGroup('sku', trans('general.sku'), 'file', ['required'=>'required']) }}

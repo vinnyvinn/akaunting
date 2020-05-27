@@ -2579,7 +2579,8 @@
 }
 
 .el-select .el-select__tags>span {
-    display: contents
+    display: inline-flex;
+    margin-top: 75px;
 }
 
 .el-select .el-select__tags .el-tag {

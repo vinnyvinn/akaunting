@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Modals;
 
 use App\Abstracts\Http\Controller;
+use App\Http\Requests\Common\Item as IRequest;
 use App\Jobs\Common\CreateItem;
 use App\Models\Setting\Category;
 use App\Models\Setting\Currency;
 use App\Models\Setting\Tax;
-use Illuminate\Http\Request as IRequest;
+//use Illuminate\Http\Request as IRequest;
+use Modules\Inventory\Models\Warehouse;
 
 class Items extends Controller
 {
@@ -28,15 +30,16 @@ class Items extends Controller
      *
      * @return Response
      */
-    public function create(IRequest $request)
+    public function create()
     {
+     \Log::info('ookkkkk');
         $categories = Category::type('item')->enabled()->orderBy('name')->pluck('name', 'id');
 
         $taxes = Tax::enabled()->orderBy('name')->get()->pluck('title', 'id');
 
         $currency = Currency::where('code', setting('default.currency', 'USD'))->first();
-
-        $html = view('modals.items.create', compact('categories', 'taxes', 'currency'))->render();
+        $warehouses = Warehouse::pluck('name','id');
+        $html = view('modals.items.create', compact('categories', 'taxes', 'currency','warehouses'))->render();
 
         return response()->json([
             'success' => true,
@@ -54,6 +57,8 @@ class Items extends Controller
      */
     public function store(IRequest $request)
     {
+   \Log::info('passed here...');
+        \Log::info(request()->all());
         if ($request->get('type', false) == 'inline') {
             $data = [
                 'company_id' => session('company_id'),

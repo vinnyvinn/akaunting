@@ -65,8 +65,11 @@ class Items extends Controller
     //get available qty
     public function qtyAvailable($item,$wh)
     {
-      $qty = WarehouseItem::where('item_id',$item)->where('warehouse_id',$wh)->first()->quantity;
-      return response()->json($qty);
+      $qty = WarehouseItem::where('item_id',$item)->where('warehouse_id',$wh)->first();
+      if (!$qty){
+          return response('error');
+      }
+      return response()->json($qty->quantity);
     }
     /**
      * Store a newly created resource in storage.
@@ -76,6 +79,7 @@ class Items extends Controller
      */
     public function store(Request $request)
     {
+
 
         $response = $this->ajaxDispatch(new CreateItem($request));
 

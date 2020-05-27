@@ -30,8 +30,10 @@ class CreateItem extends Job
      */
     public function handle()
     {
+        \Log::info('coolll');
+        \Log::info($this->request->all());
         $this->request['company_id'] = session('company_id') ? session('company_id') : 1;
-        $item = Item::create($this->request->except('warehouse_id'));
+        $item = Item::create($this->request->except(['warehouse_id','null']));
         // Upload picture
         if ($this->request->file('picture')) {
             $media = $this->getMedia($this->request->file('picture'), 'items');

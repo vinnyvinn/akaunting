@@ -579,6 +579,7 @@ export default {
 
     created() {
         this.new_options = {};
+        console.log(this.selectOptions)
     },
 
     mounted() {

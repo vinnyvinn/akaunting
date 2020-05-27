@@ -27,8 +27,9 @@
 
                 {{ Form::textGroup('bill_number', trans('bills.bill_number'), 'file', ['required' => 'required'], $number) }}
 
-                {{ Form::textGroup('order_number', trans('bills.order_number'), 'shopping-cart',[]) }}
-                {{ Form::selectGroup('warehouse_id', 'Warehouse', 'folder', $warehouses, null, ['required' => 'required','change'=>'onChangeWarehouse']) }}
+                {{ Form::textGroup('order_no', trans('bills.order_number'), 'shopping-cart',[]) }}
+                {{ Form::selectAddNewGroup('warehouse_id', 'Warehouse', 'user', $warehouses, null, ['required' => 'required', 'path' => route('modals.warehouses.create'), 'change' => 'onChangeWarehouse']) }}
+{{--                {{ Form::selectAddNewGroup('warehouse_id', 'Warehouse', 'folder', $warehouses,  ['required' => 'required', 'path' => route('modals.warehouses.create'), 'change' => 'onChangeWarehouse']) }}--}}
                 <div class="col-sm-12 mb-4">
                     @php $item_colspan = in_array(setting('localisation.discount_location', 'total'), ['item', 'both']) ? '6' : '5' @endphp
                     {!! Form::label('items', trans_choice('general.items', 2), ['class' => 'form-control-label']) !!}
@@ -40,6 +41,9 @@
                                 <th class="text-center border-right-0 border-bottom-0">{{ trans('general.actions') }}</th>
                                 @stack('actions_th_end')
 
+{{--                                @stack('name_th_start')--}}
+{{--                                <th class="text-left border-right-0 border-bottom-0">{{ trans('general.name') }}</th>--}}
+{{--                                @stack('name_th_end')--}}
                                 @stack('name_th_start')
                                 <th class="text-left border-right-0 border-bottom-0">{{ trans('general.name') }}</th>
                                 @stack('name_th_end')

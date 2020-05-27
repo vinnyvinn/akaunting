@@ -87,21 +87,13 @@ class Warehouses extends Controller
      */
     public function store(ModulesWarehouse $request)
     {
-        $warehouse = Warehouse::create($request->all());
-
-        $response = [
-            'success' => true,
-            'error' => false,
-            'redirect' => route('warehouses.index'),
-            'data' => [],
-            'message' => ''
-        ];
+        Warehouse::create($request->all());
 
         $message =  trans_choice('inventory::general.warehouses', 1);
 
         flash($message)->success();
 
-        return response()->json($response);
+        return response()->json($message);
     }
 
     /**

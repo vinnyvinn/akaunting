@@ -108,6 +108,7 @@ class Bills extends Controller
         $currency = Currency::where('code', setting('default.currency'))->first();
 
         $items = Item::enabled()->orderBy('name')->get();
+        $itemss = Item::enabled()->orderBy('name')->pluck('name','id');
 
         $taxes = Tax::enabled()->orderBy('name')->get();
         $warehouses = Warehouse::pluck('name','id');
@@ -115,7 +116,7 @@ class Bills extends Controller
 
         $number = $this->getNextBillNumber();
 
-        return view('purchases.bills.create', compact('vendors', 'currencies', 'currency', 'items', 'taxes', 'categories', 'number','bills','warehouses'));
+        return view('purchases.bills.create', compact('vendors', 'currencies', 'currency', 'items', 'taxes', 'categories', 'number','bills','warehouses','itemss'));
     }
 
     /**
@@ -127,7 +128,7 @@ class Bills extends Controller
      */
     public function store(Request $request)
     {
-
+        $request['order_number'] = $request->get('order_no');
         $response = $this->ajaxDispatch(new CreateBill($request));
 
         if ($response['success']) {

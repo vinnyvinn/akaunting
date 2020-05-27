@@ -322,7 +322,6 @@
 
                 @stack('bill_item_start')
                 <r-bill :items="{{json_encode($bill->items)}}" :notes="{{json_encode($bill->notes)}}" :bill="{{json_encode($bill)}}"></r-bill>
-
                 @stack('bill_item_end')
 
                 @stack('bill_total_start')

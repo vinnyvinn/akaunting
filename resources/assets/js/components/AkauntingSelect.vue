@@ -993,6 +993,7 @@ export default {
 
         async onAddItem() {
             // Get Select Input value
+
             if (this.title) {
                 var value = this.$children[0].$children[0].$children[0].$refs.input.value;
             } else {

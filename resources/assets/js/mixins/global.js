@@ -32,6 +32,7 @@ import ToWhCost from "../components/ToWhCost";
 import ItemDescription from "../components/ItemDescription";
 import ItemQuantity from "../components/ItemQuantity";
 import TransferItem from "../components/TransferItem";
+import CustomSelect from "../components/CustomSelect";
 
 export default {
     components: {
@@ -57,6 +58,7 @@ export default {
         ItemDescription,
         ItemQuantity,
         TransferItem,
+        CustomSelect,
         AkauntingHtmlEditor,
         [Select.name]: Select,
         [Option.name]: Option,
