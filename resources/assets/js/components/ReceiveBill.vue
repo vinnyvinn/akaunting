@@ -20,7 +20,7 @@
                         </td>
                         <td class="col-xs-2 col-sm-1 total_qty">{{ item.quantity }}</td>
                         <td class="col-xs-2 col-sm-1 text-center">{{ item.qty_r }}</td>
-                        <td class="col-xs-2 col-sm-2 text-right"> <input type="text" class="form-control qty_receive" v-model="item.quantity_received" @keyup="item_qty=item.quantity_received;item_id=item.id"></td>
+                        <td class="col-xs-2 col-sm-2 text-right"> <input type="text" class="form-control qty_receive" v-model="item.quantity_received" @keyup="item_qty=item.quantity_received;item_id=item.id" style="width: 90px;margin-left: 70px;"></td>
                         <td class="col-xs-2 col-sm-1 text-center">{{ item.qty_rem }}</td>
                         <td class="col-sm-1 text-blue  text-center">{{item.price | toCurrency(bill.currency_code)}}</td>
                          <td class="col-xs-1 col-sm-3 text-center">{{item.total | toCurrency(bill.currency_code)}}</td>
