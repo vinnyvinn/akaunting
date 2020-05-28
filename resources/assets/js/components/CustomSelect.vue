@@ -923,43 +923,15 @@
                 add_new_html: '',
                 form: {},
                 new_options: false,
+                all_items:{}
             }
         },
 
         created() {
-            /*
-            if (this.group != true && Object.keys(this.options).length) {
-                let sortable = [];
-                let option_sortable = this.option_sortable;
-
-                for (var option_key in this.options) {
-                    sortable.push({
-                        'key' : option_key,
-                        'value': this.options[option_key]
-                    });
-                }
-
-                if (option_sortable == 'value') {
-                    sortable.sort(function(a, b) {
-                        var sortableA = a[option_sortable].toUpperCase();
-                        var sortableB = b[option_sortable].toUpperCase();
-
-                        let comparison = 0;
-
-                        if (sortableA > sortableB) {
-                            comparison = 1;
-                        } else if (sortableA < sortableB) {
-                            comparison = -1;
-                        }
-
-                        return comparison;
-                    });
-                }
-
-                this.options = sortable;
-            }
-            */
-
+           axios.get('/common/items/all')
+            .then(res => {
+                this.all_items = res.data
+            })
             this.new_options = {};
         },
 
@@ -981,14 +953,30 @@
         },
 
         methods: {
+          showObject(obj) {
+        var result = "";
+        for (var p in obj) {
+            if( obj.hasOwnProperty(p) ) {
+                result += p + " , " + obj[p] + "\n";
+            }
+        }
+        return result;
+         },
             change() {
                 if (typeof(this.real_model) === 'object' && typeof(this.real_model.type) !== 'undefined') {
                     return false;
                 }
+
                 this.$emit('interface', this.real_model);
                 this.$emit('change', this.real_model);
-                console.log(this.real_model)
+                this.all_items.forEach(item => {
+                    if (item.id == this.real_model) {
+                        this.$emit('label', item.name);
+                        this.$emit('option', item);
 
+                        return true;
+                    }
+                });
             },
 
             async onAddItem() {

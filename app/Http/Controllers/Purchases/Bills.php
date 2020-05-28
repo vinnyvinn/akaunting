@@ -108,7 +108,7 @@ class Bills extends Controller
         $currency = Currency::where('code', setting('default.currency'))->first();
 
         $items = Item::enabled()->orderBy('name')->get();
-        $itemss = Item::enabled()->orderBy('name')->pluck('name','id');
+        $itemss = Item::enabled()->orderBy('name')->pluck('name','id')->toArray();
 
         $taxes = Tax::enabled()->orderBy('name')->get();
         $warehouses = Warehouse::pluck('name','id');

@@ -26,6 +26,7 @@ class MarkBillReceived
                 $condition = true;
             }else{
                 $condition = false;
+                break;
             }
         }
         if ($condition){

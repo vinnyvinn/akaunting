@@ -37,6 +37,11 @@ class Items extends Controller
         return view('common.items.index', compact('items'));
     }
 
+    public function allItems()
+    {
+        return response()->json(Item::get());
+    }
+
     /**
      * Show the form for viewing the specified resource.
      *
