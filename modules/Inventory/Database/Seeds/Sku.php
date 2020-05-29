@@ -28,61 +28,61 @@ class Sku extends Seeder
     private function create()
     {
         $faker = Factory::create();
-        $item1 = Item::create([
-            'company_id' => session('company_id'),
-            'name' => $faker->name,
-            'description' => $faker->sentence,
-            'sale_price' => $faker->numberBetween(500,1000),
-            'purchase_price' => $faker->numberBetween(50,450),
-            'category_id' => 1,
-            'enabled' => 1,
-            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
-        ]);
-        InventoryItem::createItem($item1);
-        $item2 = Item::create([
-            'company_id' => session('company_id'),
-            'name' => $faker->name,
-            'description' => $faker->sentence,
-            'sale_price' => $faker->numberBetween(500,1000),
-            'purchase_price' => $faker->numberBetween(50,450),
-            'category_id' => 1,
-            'enabled' => 1,
-            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
-        ]);
-        InventoryItem::createItem($item2);
-        $item3 = Item::create([
-            'company_id' => session('company_id'),
-            'name' => $faker->name,
-            'description' => $faker->sentence,
-            'sale_price' => $faker->numberBetween(500,1000),
-            'purchase_price' => $faker->numberBetween(50,450),
-            'category_id' => 1,
-            'enabled' => 1,
-            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
-        ]);
-        InventoryItem::createItem($item3);
-        $item4 = Item::create([
-            'company_id' => session('company_id'),
-            'name' => $faker->name,
-            'description' => $faker->sentence,
-            'sale_price' => $faker->numberBetween(500,1000),
-            'purchase_price' => $faker->numberBetween(50,450),
-            'category_id' => 1,
-            'enabled' => 1,
-            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
-        ]);
-        InventoryItem::createItem($item4);
-        $item5 = Item::create([
-            'company_id' => session('company_id'),
-            'name' => $faker->name,
-            'description' => $faker->sentence,
-            'sale_price' => $faker->numberBetween(500,1000),
-            'purchase_price' => $faker->numberBetween(50,450),
-            'category_id' => 1,
-            'enabled' => 1,
-            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
-        ]);
-        InventoryItem::createItem($item5);
+//        $item1 = Item::create([
+//            'company_id' => session('company_id'),
+//            'name' => $faker->name,
+//            'description' => $faker->sentence,
+//            'sale_price' => $faker->numberBetween(500,1000),
+//            'purchase_price' => $faker->numberBetween(50,450),
+//            'category_id' => 1,
+//            'enabled' => 1,
+//            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
+//        ]);
+//        InventoryItem::createItem($item1);
+//        $item2 = Item::create([
+//            'company_id' => session('company_id'),
+//            'name' => $faker->name,
+//            'description' => $faker->sentence,
+//            'sale_price' => $faker->numberBetween(500,1000),
+//            'purchase_price' => $faker->numberBetween(50,450),
+//            'category_id' => 1,
+//            'enabled' => 1,
+//            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
+//        ]);
+//        InventoryItem::createItem($item2);
+//        $item3 = Item::create([
+//            'company_id' => session('company_id'),
+//            'name' => $faker->name,
+//            'description' => $faker->sentence,
+//            'sale_price' => $faker->numberBetween(500,1000),
+//            'purchase_price' => $faker->numberBetween(50,450),
+//            'category_id' => 1,
+//            'enabled' => 1,
+//            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
+//        ]);
+//        InventoryItem::createItem($item3);
+//        $item4 = Item::create([
+//            'company_id' => session('company_id'),
+//            'name' => $faker->name,
+//            'description' => $faker->sentence,
+//            'sale_price' => $faker->numberBetween(500,1000),
+//            'purchase_price' => $faker->numberBetween(50,450),
+//            'category_id' => 1,
+//            'enabled' => 1,
+//            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
+//        ]);
+//        InventoryItem::createItem($item4);
+//        $item5 = Item::create([
+//            'company_id' => session('company_id'),
+//            'name' => $faker->name,
+//            'description' => $faker->sentence,
+//            'sale_price' => $faker->numberBetween(500,1000),
+//            'purchase_price' => $faker->numberBetween(50,450),
+//            'category_id' => 1,
+//            'enabled' => 1,
+//            'sku' =>$faker->userName.'-'.$faker->randomDigitNotNull
+//        ]);
+//        InventoryItem::createItem($item5);
 
         $company_id = $this->command->argument('company');
 
