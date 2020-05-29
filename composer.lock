@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "91309f3a56105719c200deb6d0b2079e",
+    "content-hash": "4713532d3c6a566b1262ffcdecebf1e0",
     "packages": [
         {
             "name": "akaunting/firewall",
@@ -323,16 +323,16 @@
         },
         {
             "name": "akaunting/setting",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/akaunting/setting.git",
-                "reference": "231b673a19f96fba050e9c005d3cbc7e428c914b"
+                "reference": "194f8c60285f66835f70e0a8e87e1a66d989b111"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/akaunting/setting/zipball/231b673a19f96fba050e9c005d3cbc7e428c914b",
-                "reference": "231b673a19f96fba050e9c005d3cbc7e428c914b",
+                "url": "https://api.github.com/repos/akaunting/setting/zipball/194f8c60285f66835f70e0a8e87e1a66d989b111",
+                "reference": "194f8c60285f66835f70e0a8e87e1a66d989b111",
                 "shasum": ""
             },
             "require": {
@@ -382,7 +382,7 @@
                 "laravel",
                 "persistent"
             ],
-            "time": "2019-12-31T21:50:36+00:00"
+            "time": "2020-04-29T07:18:49+00:00"
         },
         {
             "name": "akaunting/version",

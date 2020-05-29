@@ -89,8 +89,9 @@
                             @stack('add_item_td_end')
 
                             @stack('sub_total_td_start')
+
                             <tr id="tr-subtotal">
-                                <td class="text-right border-right-0 border-bottom-0" colspan="{{ $item_colspan }}" :colspan="colspan">
+                                <td class="text-right border-right-0 border-bottom-0" colspan="7">
                                     <strong>{{ trans('bills.sub_total') }}</strong>
                                 </td>
                                 <td class="text-right border-bottom-0 long-texts">
@@ -99,12 +100,13 @@
                                     <span v-else>@money(0, $currency->code, true)</span>
                                 </td>
                             </tr>
+
                             @stack('sub_total_td_end')
 
                             @if (in_array(setting('localisation.discount_location', 'total'), ['item', 'both']))
                                 @stack('item_discount_td_start')
                                 <tr id="tr-subtotal">
-                                    <td class="text-right border-right-0 border-bottom-0" colspan="{{ $item_colspan }}" :colspan="colspan">
+                                    <td class="text-right border-right-0 border-bottom-0" colspan="7"">
                                         <strong>{{ trans('bills.item_discount') }}</strong>
                                     </td>
                                     <td class="text-right border-bottom-0 long-texts">
@@ -119,7 +121,7 @@
                             @if (in_array(setting('localisation.discount_location', 'total'), ['total', 'both']))
                                 @stack('add_discount_td_start')
                                 <tr id="tr-discount">
-                                    <td class="text-right border-right-0 border-bottom-0" colspan="{{ $item_colspan }}" :colspan="colspan">
+                                    <td class="text-right border-right-0 border-bottom-0" colspan="7">
                                         <el-popover
                                                 popper-class="p-0 h-0"
                                                 placement="bottom"
@@ -171,7 +173,7 @@
 
                             @stack('tax_total_td_start')
                             <tr id="tr-tax">
-                                <td class="text-right border-right-0 border-bottom-0" colspan="{{ $item_colspan }}" :colspan="colspan">
+                                <td class="text-right border-right-0 border-bottom-0" colspan="7">
                                     <strong>{{ trans_choice('general.taxes', 1) }}</strong>
                                 </td>
                                 <td class="text-right border-bottom-0 long-texts">
@@ -184,7 +186,7 @@
 
                             @stack('grand_total_td_start')
                             <tr id="tr-total">
-                                <td class="text-right border-right-0" colspan="{{ $item_colspan }}" :colspan="colspan">
+                                <td class="text-right border-right-0" colspan="7">
                                     <strong>{{ trans('bills.total') }}</strong>
                                 </td>
                                 <td class="text-right long-texts">

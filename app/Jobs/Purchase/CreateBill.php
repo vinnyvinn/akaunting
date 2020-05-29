@@ -40,7 +40,7 @@ class CreateBill extends Job
         }
 
         //event(new BillCreating($this->request));
-
+       ;
         $this->bill = Bill::create($this->request->all());
 
         // Upload attachment

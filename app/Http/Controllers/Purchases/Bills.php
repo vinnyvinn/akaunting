@@ -41,6 +41,7 @@ class Bills extends Controller
      */
     public function index()
     {
+      //  dd($this->getNextBillNumber());
         $bills = Bill::with(['contact', 'items', 'histories', 'transactions'])->collect(['billed_at'=> 'desc']);
 
         $vendors = Contact::vendor()->enabled()->orderBy('name')->pluck('name', 'id');

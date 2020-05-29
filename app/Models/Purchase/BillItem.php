@@ -164,7 +164,6 @@ class BillItem extends Model
         unset($this->tax_id);
     }
     public static function receiveQty($bill){
-        \Log::info('iiiiiiiiiii');
         foreach (request()->get('items') as $item){
             foreach ($bill->items as $bill_item){
             if ($bill_item->id == $item['id']){
@@ -179,7 +178,7 @@ class BillItem extends Model
 
         DB::table('bill_items')->where('id',$item['id'])->increment('quantity_received',$item['quantity_received']);
         DB::table('bill_items')->where('id',$item['id'])->update(['quantity_update'=>$item['quantity_received']]);
-         WarehouseItem::where('item_id',BillItem::find($item['id'])->item_id)->where('warehouse_id',$bill->warehouse_id)->decrement('quantity',$item['quantity_received']);
+        WarehouseItem::where('item_id',BillItem::find($item['id'])->item_id)->where('warehouse_id',$bill->warehouse_id)->increment('quantity',$item['quantity_received']);
         }
        Bill::updateTotal(self::find($item['id'])->bill_id,request()->get('total'));
        return 1;
