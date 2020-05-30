@@ -24,21 +24,14 @@ class Item extends FormRequest
     public function rules()
     {
         $picture = 'nullable';
-        $warehouse = 'required';
-        $quantity = 'required';
         if ($this->request->get('picture', null)) {
             $picture = 'mimes:' . config('filesystems.mimes') . '|between:0,' . config('filesystems.max_size') * 1024;
         }
-        if($this->getMethod() == 'PATCH'){
-            $warehouse = 'nullable';
-            $quantity = 'nullable';
-        }
+
         return [
             'name' => 'required|string',
             'sale_price' => 'required',
             'purchase_price' => 'required',
-            'warehouse_id' => $warehouse,
-            'quantity' => $quantity,
             'sku' => 'required',
             'description' => 'required',
             'tax_id' => 'nullable|integer',

@@ -2610,10 +2610,13 @@
     max-width: unset !important;
     top: 24px;
     flex-wrap: unset;
+
 }
 
 :first-of-type.select-tax .el-select span:first-of-type {
     width: 125px !important;
+    margin-top: 0;
+
 }
 
 .select-tax .el-select span:last-of-type {

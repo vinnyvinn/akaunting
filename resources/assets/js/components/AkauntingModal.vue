@@ -145,4 +145,8 @@ export default {
     .modal.show {
         background-color: rgba(0, 0, 0, 0.3);
     }
+    .modal-open{
+        overflow: auto !important;
+    }
+
 </style>

@@ -928,10 +928,7 @@
         },
 
         created() {
-           axios.get('/common/items/all')
-            .then(res => {
-                this.all_items = res.data
-            })
+            this.getItems();
             this.new_options = {};
         },
 
@@ -953,6 +950,12 @@
         },
 
         methods: {
+            getItems(){
+                axios.get('/common/items/all')
+                    .then(res => {
+                        this.all_items = res.data
+                    })
+            },
           showObject(obj) {
         var result = "";
         for (var p in obj) {
@@ -964,11 +967,11 @@
          },
             change() {
                 if (typeof(this.real_model) === 'object' && typeof(this.real_model.type) !== 'undefined') {
-                    return false;
+                  return false;
                 }
-
                 this.$emit('interface', this.real_model);
                 this.$emit('change', this.real_model);
+
                 this.all_items.forEach(item => {
                     if (item.id == this.real_model) {
                         this.$emit('label', item.name);
@@ -1030,6 +1033,7 @@
 
                                 methods: {
                                     onSubmit(event) {
+
                                         this.$emit('submit', event);
                                     },
 
@@ -1112,7 +1116,19 @@
 
                             this.$emit('new', response.data.data);
 
+
                             this.change();
+                            axios.get('/common/items/all')
+                                .then(res => {
+                                    this.all_items = res.data
+                                    res.data.forEach(item => {
+                                        if (item.name == this.form.name) {
+                                            console.log('dispatched....')
+                                            this.$store.dispatch('selectedItem',item);
+                                        }
+                                    });
+                                })
+
                         }
                     })
                     .catch(error => {
@@ -1122,6 +1138,7 @@
 
                         this.method_show_html = error.message;
                     });
+
             },
 
             onCancel() {

@@ -32,14 +32,14 @@ class Items extends Controller
      */
     public function create()
     {
-     \Log::info('ookkkkk');
+
         $categories = Category::type('item')->enabled()->orderBy('name')->pluck('name', 'id');
 
         $taxes = Tax::enabled()->orderBy('name')->get()->pluck('title', 'id');
 
         $currency = Currency::where('code', setting('default.currency', 'USD'))->first();
-        $warehouses = Warehouse::pluck('name','id');
-        $html = view('modals.items.create', compact('categories', 'taxes', 'currency','warehouses'))->render();
+
+        $html = view('modals.items.create', compact('categories', 'taxes', 'currency'))->render();
 
         return response()->json([
             'success' => true,
@@ -57,8 +57,6 @@ class Items extends Controller
      */
     public function store(IRequest $request)
     {
-   \Log::info('passed here...');
-        \Log::info(request()->all());
         if ($request->get('type', false) == 'inline') {
             $data = [
                 'company_id' => session('company_id'),

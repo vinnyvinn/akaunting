@@ -50,7 +50,6 @@
                     @label="row.name = $event"
                     @option="onSelectItem($event, index)"
                     @change="form.errors.clear('items.' + index + '.name')"
-
                     :currency-code="form.currency_code"
                     :form-error="form.errors.get('items.' + index + '.name')"
                     :loading-text="'{{ trans('general.loading') }}'"
@@ -58,34 +57,6 @@
                     :no-matching-data-text="'{{ trans('general.no_matching_data') }}'"
             ></custom-select>
 
-{{--            <akaunting-select-remote--}}
-{{--                    :form-classes="[{'has-error': form.errors.has('items.' + index + '.name')}]"--}}
-{{--                    :placeholder="'{{ trans('general.type_item_name') }}'"--}}
-{{--                    :name="'item_id'"--}}
-{{--                    :options="{{ json_encode($items) }}"--}}
-{{--                    :value="form.items[index].item_id"--}}
-{{--                    :add-new="{{ json_encode([--}}
-{{--                    'status' => true,--}}
-{{--                    'text' => trans('general.add_new'),--}}
-{{--                    'path' => route('modals.items.store'),--}}
-{{--                    'type' => 'inline',--}}
-{{--                    'field' => [--}}
-{{--                        'key' => 'id',--}}
-{{--                        'value' => 'name'--}}
-{{--                    ],--}}
-{{--                    'new_text' => trans('modules.new'),--}}
-{{--                ])}}"--}}
-{{--                    @interface="row.item_id = $event"--}}
-{{--                    @label="row.name = $event"--}}
-{{--                    @option="onSelectItem($event, index)"--}}
-{{--                    @change="form.errors.clear('items.' + index + '.name')"--}}
-
-{{--                    :currency-code="form.currency_code"--}}
-{{--                    :form-error="form.errors.get('items.' + index + '.name')"--}}
-{{--                    :loading-text="'{{ trans('general.loading') }}'"--}}
-{{--                    :no-data-text="'{{ trans('general.no_data') }}'"--}}
-{{--                    :no-matching-data-text="'{{ trans('general.no_matching_data') }}'"--}}
-{{--            ></akaunting-select-remote>--}}
             <input type="hidden"
                 data-item="name"
                 v-model="row.name"

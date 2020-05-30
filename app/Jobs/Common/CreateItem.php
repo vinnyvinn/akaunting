@@ -6,6 +6,7 @@ use App\Abstracts\Job;
 use App\Models\Common\Item;
 use Modules\Inventory\Models\History;
 use Modules\Inventory\Models\Item as ItemInventory;
+use Modules\Inventory\Models\Warehouse;
 use Modules\Inventory\Models\WarehouseItem;
 use Faker\Factory;
 
@@ -30,10 +31,10 @@ class CreateItem extends Job
      */
     public function handle()
     {
-        \Log::info('coolll');
-        \Log::info($this->request->all());
+
         $this->request['company_id'] = session('company_id') ? session('company_id') : 1;
-        $item = Item::create($this->request->except(['warehouse_id','null']));
+       $this->request['quantity'] = 0;
+        $item = Item::create($this->request->except('null'));
         // Upload picture
         if ($this->request->file('picture')) {
             $media = $this->getMedia($this->request->file('picture'), 'items');
@@ -49,10 +50,10 @@ class CreateItem extends Job
             'reorder_level' => 50
         ]);
         $user = user();
-        foreach ($this->request->get('warehouse_id') as $warehouse){
+        foreach (Warehouse::get() as $warehouse){
             WarehouseItem::create([
                 'company_id' => $item->company_id,
-                'warehouse_id' => $warehouse,
+                'warehouse_id' => $warehouse->id,
                 'item_id' => $item->id,
                 'quantity' => $this->request->get('quantity')
             ]);
@@ -63,7 +64,7 @@ class CreateItem extends Job
                 'item_id' => $item->id,
                 'type_id' => $item->id,
                 'type_type' => get_class($item),
-                'warehouse_id' => $warehouse,
+                'warehouse_id' => $warehouse->id,
                 'quantity' => $this->request->get('quantity')
             ]);
         }

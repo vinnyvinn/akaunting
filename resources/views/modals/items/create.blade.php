@@ -9,11 +9,10 @@
 ]) !!}
     <div class="row">
         {{ Form::textGroup('name', trans('general.name'), 'tag') }}
-        {{ Form::selectAddNewGroup('tax_id', trans_choice('general.taxes', 1), 'percentage', $taxes, setting('default.tax'), ['path' => route('modals.taxes.create'), 'field' => ['key' => 'id', 'value' => 'title']]) }}
-        {{ Form::numberGroup('quantity', trans('general.quantity'), 'file', ['required'=>'required'],1) }}
+        {{ Form::selectGroup('tax_id', trans_choice('general.taxes', 1), 'percentage', $taxes, setting('default.tax'), ['path' => route('modals.taxes.create'), 'field' => ['key' => 'id', 'value' => 'title']]) }}
+
          {{ Form::textGroup('sku', trans('general.sku'), 'file', ['required'=>'required']) }}
 
-        {{ Form::multiSelectGroup('warehouse_id', trans_choice('general.warehouses', 1), 'credit-card', $warehouses) }}
         {{ Form::textareaGroup('description', trans('general.description')) }}
 
         {{ Form::textGroup('sale_price', trans('items.sales_price'), 'money-bill-wave') }}

@@ -289,10 +289,15 @@ class MarkBillReceived
 
         if (!empty($item['tax_id'])) {
             $inclusives = $compounds = [];
-
-            foreach ((array) $item['tax_id'] as $tax_id) {
-                $tax = Tax::find($tax_id);
-
+              \Log::info('tax id----');
+              \Log::info($item['tax_id']);
+              \Log::info('end tax id----');
+         //   foreach ((array) $item['tax_id'] as $tax_id) {
+               $tax_id = $item['tax_id']->tax_id;
+               $tax = Tax::find($tax_id);
+               \Log::info("begin tax----------");
+               \Log::info($tax);
+               \Log::info("end tax----------");
                 switch ($tax->type) {
                     case 'inclusive':
                         $inclusives[] = $tax;
@@ -331,7 +336,7 @@ class MarkBillReceived
 
                         break;
                 }
-            }
+         //   }
 
             if ($inclusives) {
                 $item_amount = $item_discounted_amount + $item_tax_total;

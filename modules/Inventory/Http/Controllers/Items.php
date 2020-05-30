@@ -70,15 +70,13 @@ class Items extends Controller
     {
         $vendors = [];
 
-        $warehouses = Warehouse::enabled()->pluck('name', 'id');
-
         $categories = Category::enabled()->orderBy('name')->type('item')->pluck('name', 'id');
 
         $taxes = Tax::enabled()->orderBy('name')->get()->pluck('title', 'id');
 
         $currency = Currency::where('code', '=', setting('default.currency', 'USD'))->first();
 
-        return view('inventory::items.create', compact('categories', 'taxes', 'currency', 'vendors', 'warehouses'));
+        return view('inventory::items.create', compact('categories', 'taxes', 'currency', 'vendors'));
     }
 
     /**

@@ -1241,4 +1241,5 @@ export default {
         margin-right: 35px;
         position: relative;
     }
+
 </style>

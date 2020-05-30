@@ -177,7 +177,7 @@ class InventoryV1 extends Migration
             $table->integer('company_id');
             $table->integer('warehouse_id');
             $table->integer('item_id');
-            $table->integer('quantity')->nullable()->default(1);
+            $table->integer('quantity')->nullable()->default(0);
 
             $table->timestamps();
             $table->softDeletes();

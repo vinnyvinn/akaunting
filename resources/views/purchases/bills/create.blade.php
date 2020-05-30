@@ -41,9 +41,6 @@
                                 <th class="text-center border-right-0 border-bottom-0">{{ trans('general.actions') }}</th>
                                 @stack('actions_th_end')
 
-{{--                                @stack('name_th_start')--}}
-{{--                                <th class="text-left border-right-0 border-bottom-0">{{ trans('general.name') }}</th>--}}
-{{--                                @stack('name_th_end')--}}
                                 @stack('name_th_start')
                                 <th class="text-left border-right-0 border-bottom-0">{{ trans('general.name') }}</th>
                                 @stack('name_th_end')

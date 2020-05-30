@@ -10,7 +10,8 @@ require('./../../bootstrap');
 
 import Vue from 'vue';
 import VueToastr from 'vue-toastr';
-
+import vueX from 'vuex';
+Vue.use(vueX);
 import DashboardPlugin from './../../plugins/dashboard-plugin';
 
 import Global from './../../mixins/global';
@@ -19,7 +20,10 @@ import Form from './../../plugins/form';
 import Error from './../../plugins/error';
 import BulkAction from './../../plugins/bulk-action';
 import PayBill from "../../components/PayBill";
+import {mapGetters} from 'vuex';
+
 Vue.use(VueToastr);
+
 
 window.eventBus = new Vue();
 window.axios = require('axios');
@@ -37,6 +41,27 @@ Vue.filter('toCurrency', function (value,cur='GBP') {
     return formatter.format(value);
 });
 
+const store = new vueX.Store({
+   state:{
+     item:{}
+   },
+   getters:{
+    getSelectedItem(state){
+        return state.item;
+    }
+   },
+   mutations:{
+    selectedItem(state,data){
+      state.item = data;
+    }
+   },
+   actions:{
+       selectedItem({commit},data){
+        commit('selectedItem',data);
+       }
+   }
+});
+
 // plugin setup
 Vue.use(DashboardPlugin);
 
@@ -46,6 +71,7 @@ const app = new Vue({
         PayBill
     },
     el: '#app',
+    store,
 
     mixins: [
         Global
@@ -90,7 +116,6 @@ const app = new Vue({
     mounted() {
         //this.colspan = document.getElementById("items").rows[0].cells.length - 1;
         this.form.items = [];
-
         if (this.form.method) {
             this.onAddItem();
         }
@@ -124,7 +149,16 @@ const app = new Vue({
             this.taxes = JSON.parse(document.getElementById('taxes').getAttribute('data-value'));
         }
     },
-
+    watch:{
+        item_Selected(){
+          this.onSelectItem(this.item_Selected,null);
+        }
+    },
+    computed:{
+      ...mapGetters({
+          item_Selected:'getSelectedItem'
+      })
+    },
     methods: {
        onChangeWarehouse(wh_id) {
        this.warehouse_id = wh_id;
@@ -148,7 +182,6 @@ const app = new Vue({
                 .catch(error => {
                 });
         },
-
         onCalculateTotal() {
             let sub_total = 0;
             let discount_total = 0;
@@ -320,7 +353,9 @@ const app = new Vue({
         },
 
         onSelectItem(item, index) {
-
+           if(index ==null){
+               index = this.form.items.length-1;
+           }
            var available_qty;
            if (this.warehouse_id ===''){
                this.form.items[index].item_id = '';
@@ -420,3 +455,4 @@ const app = new Vue({
         },
     }
 });
+
