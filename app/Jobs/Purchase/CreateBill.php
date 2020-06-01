@@ -56,7 +56,7 @@ class CreateBill extends Job
 
         $this->bill->createRecurring();
 
-        //  event(new BillCreated($this->bill));
+         event(new BillCreated($this->bill));
 
         return $this->bill;
     }

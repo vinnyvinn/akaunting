@@ -10,7 +10,7 @@ return [
     | Auto-save every time the application shuts down
     |
     */
-	'auto_save'			=> env('SETTING_AUTO_SAVE', false),
+	'auto_save'			=> env('SETTING_AUTO_SAVE', true),
 
     /*
     |--------------------------------------------------------------------------

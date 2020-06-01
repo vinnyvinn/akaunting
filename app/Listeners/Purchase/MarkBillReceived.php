@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Modules\Inventory\Models\WarehouseItem;
 use Faker\Factory;
+use App\Traits\Purchases;
 
 class MarkBillReceived
 {
-    use Jobs;
+    use Jobs, Purchases;
     public $bill;
     public $new_bill;
     /**
@@ -72,7 +73,7 @@ class MarkBillReceived
                'total' => $b_item->total,
            ];
        }
-      request()['bill_number'] = 'BIL-0000'.$event->bill->id.'.'.$faker->randomDigitNotNull;
+      request()['bill_number'] = $this->getNextBillNumber();
       request()['order_number'] = $event->bill->order_number;
       request()['items'] = $bill_items;
       request()['contact_id'] = $event->bill->contact_id;
@@ -97,6 +98,7 @@ class MarkBillReceived
       request()['due_at'] = Carbon::now();
 
       $this->new_bill = Bill::create(request()->all());
+      $this->increaseNextBillNumber();
       $this->createItemsAndTotals();
     }
 
