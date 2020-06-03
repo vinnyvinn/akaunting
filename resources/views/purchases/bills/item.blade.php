@@ -25,6 +25,7 @@
                     :options="{{ json_encode($itemss) }}"
                     :value="form.items[index].item_id"
                     :model="form.items[index].item_id"
+                    class="walla"
                     :add-new="{{ json_encode([
             'status' => true,
             'text' => trans('general.add_new'),
@@ -158,7 +159,7 @@
             :class="[{'has-error': form.errors.has('items.' + index + '.tax_id') }]">
             @stack('tax_id_input_start')
             <akaunting-select
-                class="mb-0 select-tax"
+                class="mb-0 select-tax walla"
                 :form-classes="[{'has-error': form.errors.has('items.' + index + '.tax_id') }]"
                 :icon="''"
                 :title="''"

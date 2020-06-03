@@ -12,9 +12,12 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Projects\Http\Requests\ProjectRequest;
 use Modules\Projects\Models\Project;
 use Modules\Projects\Models\ProjectUser;
+use App\Traits\Contacts;
+use App\Traits\NewRecordResponse;
 
 class Projects extends Controller
 {
+    use Contacts, NewRecordResponse;
     /**
      * Instantiate a new controller instance.
      */
@@ -54,17 +57,16 @@ class Projects extends Controller
      */
     public function store(ProjectRequest $request)
     {
-        $project = new Project();
-        $project->company_id = session('company_id');
-        $project->name = $request->name;
-        $project->description = $request->description;
-        $project->customer_id = $request->customer_id;
-        $project->started_at = $request->started_at;
-        $project->ended_at = $request->ended_at;
-        $project->status = 0;
-
-        $project->save();
-
+        $data = [
+        'company_id' => session('company_id'),
+        'name' => $request->name,
+        'description' => $request->description,
+        'customer_id' => $request->customer_id,
+        'started_at' => $request->started_at,
+        'ended_at' => $request->ended_at,
+        'status' => 0
+        ];
+        $response =  $this->ajaxResponse(new Project(),$data);
         $members = request('members', array());
 
         if (!in_array(Auth::id(), $members)) {
@@ -74,12 +76,13 @@ class Projects extends Controller
         foreach ($members as $member) {
             ProjectUser::create([
                 'company_id' => session('company_id'),
-                'project_id' => $project->id,
+                'project_id' => $response['data']->id,
                 'user_id' => $member,
             ]);
         }
 
         $message = trans('projects::general.success');
-        return response()->json($message);
+        flash($message)->success();
+        return response()->json($response);
     }
 }

@@ -29,7 +29,6 @@ class BillItem extends Model
      * @var array
      */
    protected $guarded = [];
-
     /**
      * Clonable relationships.
      *
@@ -175,7 +174,8 @@ class BillItem extends Model
          if ($item['quantity_received'] <=0){
              return 0;
         }
-
+      // self::find($item['id'])->increment('quantity_received',$item['quantity_received']);
+      // self::find($item['id'])->update(['quantity_update'=>$item['quantity_received']]);
         DB::table('bill_items')->where('id',$item['id'])->increment('quantity_received',$item['quantity_received']);
         DB::table('bill_items')->where('id',$item['id'])->update(['quantity_update'=>$item['quantity_received']]);
         WarehouseItem::where('item_id',BillItem::find($item['id'])->item_id)->where('warehouse_id',$bill->warehouse_id)->increment('quantity',$item['quantity_received']);

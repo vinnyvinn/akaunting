@@ -136,7 +136,8 @@ class Vendors extends Controller
 
             flash($message)->error();
         }
-
+      \Log::info("walla!!!");
+      \Log::info($response);
         return response()->json($response);
     }
 

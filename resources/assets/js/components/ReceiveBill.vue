@@ -20,7 +20,7 @@
                         </td>
                         <td class="col-xs-2 col-sm-1 text-center">{{ item.quantity }}</td>
                         <td class="col-xs-2 col-sm-2 text-center">{{ item.qty_r }}</td>
-                        <td class="col-xs-2 col-sm-1 text-center"> <input type="text" class="form-control" v-model="item.quantity_received" @keyup="item_qty=item.quantity_received;item_id=item.id"></td>
+                        <td class="col-xs-2 col-sm-1 text-center"> <input type="text" class="form-control mh" v-model="item.quantity_received" @keyup="item_qty=item.quantity_received;item_id=item.id"></td>
                         <td class="col-xs-2 col-sm-1 text-center">{{ item.qty_rem }}</td>
                         <td class="col-sm-1 text-blue  text-center">{{item.price | toCurrency(bill.currency_code)}}</td>
                          <td class="col-xs-1 col-sm-3 text-center">{{item.total | toCurrency(bill.currency_code)}}</td>
@@ -142,5 +142,7 @@
 </script>
 
 <style scoped>
-
+.mh{
+    height: 28px;
+}
 </style>

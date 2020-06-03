@@ -4,13 +4,14 @@
 '@keydown' => 'form.errors.clear($event.target.name)',
 'role' => 'form',
 'class' => 'form-loading-button',
-'route' => 'projects.store',
+'route' => 'modals.projects.store',
 'novalidate' => true
 ]) !!}
+
 <div class="row">
     {{ Form::textGroup('name', trans('general.name'), 'id-card') }}
 
-    {{ Form::selectAddNewGroup('customer_id', trans_choice('general.customers', 1), 'fa fa-users', $customers) }}
+    {{ Form::selectGroup('customer_id', trans_choice('general.customers', 1), 'fa fa-users', $customers) }}
 
     {{ Form::textareaGroup('description', trans('general.description')) }}
 

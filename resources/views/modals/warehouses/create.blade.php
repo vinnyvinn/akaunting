@@ -4,7 +4,7 @@
     '@keydown' => 'form.errors.clear($event.target.name)',
     'role' => 'form',
     'class' => 'form-loading-button',
-    'route' => 'warehouses.store',
+    'route' => 'modals.warehouses.store',
     'novalidate' => true
 ]) !!}
 <div class="row">

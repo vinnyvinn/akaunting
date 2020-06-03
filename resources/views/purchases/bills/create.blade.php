@@ -17,7 +17,8 @@
 
         <div class="card-body">
             <div class="row">
-                {{ Form::selectAddNewGroup('contact_id', trans_choice('general.vendors', 1), 'user', $vendors, config('general.vendors'), ['required' => 'required', 'path' => route('modals.vendors.create'), 'change' => 'onChangeContact']) }}
+                {{ Form::selectAddNewGroup('contact_id', 'Vendor', 'user', $vendors, null, ['required' => 'required', 'path' => route('modals.vendors.create'), 'change' => 'onChangeContact']) }}
+{{--                {{ Form::selectAddNewGroup('contact_id', trans_choice('general.vendors', 1), 'user', $vendors, config('general.vendors'), ['required' => 'required', 'path' => route('modals.vendors.create'), 'change' => 'onChangeContact']) }}--}}
 
                 {{ Form::selectAddNewGroup('currency_code', trans_choice('general.currencies', 1), 'exchange-alt', $currencies, setting('default.currency'), ['required' => 'required', 'model' => 'form.currency_code', 'path' => route('modals.currencies.create'), 'field' => ['key' => 'code', 'value' => 'name'], 'change' => 'onChangeCurrency']) }}
 
@@ -28,6 +29,7 @@
                 {{ Form::textGroup('bill_number', trans('bills.bill_number'), 'file', ['required' => 'required'], $number) }}
 
                 {{ Form::textGroup('order_no', trans('bills.order_number'), 'shopping-cart',[]) }}
+                {{ Form::selectAddNewGroup('project_id', 'Project', 'flask', $projects, null, ['required' => 'required', 'path' => route('modals.projects.create')]) }}
                 {{ Form::selectAddNewGroup('warehouse_id', 'Warehouse', 'user', $warehouses, null, ['required' => 'required', 'path' => route('modals.warehouses.create'), 'change' => 'onChangeWarehouse']) }}
 {{--                {{ Form::selectAddNewGroup('warehouse_id', 'Warehouse', 'folder', $warehouses,  ['required' => 'required', 'path' => route('modals.warehouses.create'), 'change' => 'onChangeWarehouse']) }}--}}
                 <div class="col-sm-12 mb-4">
@@ -103,7 +105,7 @@
                             @if (in_array(setting('localisation.discount_location', 'total'), ['item', 'both']))
                                 @stack('item_discount_td_start')
                                 <tr id="tr-subtotal">
-                                    <td class="text-right border-right-0 border-bottom-0" colspan="7"">
+                                    <td class="text-right border-right-0 border-bottom-0" colspan="7">
                                         <strong>{{ trans('bills.item_discount') }}</strong>
                                     </td>
                                     <td class="text-right border-bottom-0 long-texts">

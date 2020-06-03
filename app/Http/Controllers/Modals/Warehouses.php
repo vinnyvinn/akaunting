@@ -7,9 +7,11 @@ use Modules\Inventory\Http\Requests\Warehouse as ModulesWarehouse;
 use Modules\Inventory\Http\Requests\Warehouse as Request;
 
 use Modules\Inventory\Models\Warehouse;
+use App\Traits\NewRecordResponse;
 
 class Warehouses extends Controller
 {
+    use NewRecordResponse;
     /**
      * Instantiate a new controller instance.
      */
@@ -46,26 +48,9 @@ class Warehouses extends Controller
      */
     public function store(ModulesWarehouse $request)
     {
-        $warehouse = Warehouse::create($request->all());
-
-        $response = $this->ajaxDispatch(new CreateContact($request));
-
-        if ($response['success']) {
-            $response['message'] = trans('messages.success.added', ['type' => trans_choice('general.vendors', 1)]);
-        }
-
-        $response = [
-            'success' => true,
-            'error' => false,
-            'redirect' => route('warehouses.index'),
-            'data' => [],
-            'message' => ''
-        ];
-
-        $message =  trans_choice('inventory::general.warehouses', 1);
-
-        flash($message)->success();
-
-        return response()->json($response);
+       $response = $this->ajaxResponse(new Warehouse(),$request->all());
+       $message =  trans_choice('inventory::general.warehouses', 1);
+       flash($message)->success();
+       return response()->json($response);
     }
 }

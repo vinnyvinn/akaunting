@@ -29,6 +29,7 @@ use App\Traits\Uploads;
 use App\Utilities\Modules;
 use Illuminate\Support\Facades\DB;
 use Modules\Inventory\Models\Warehouse;
+use Modules\Projects\Models\Project;
 
 class Bills extends Controller
 {
@@ -41,11 +42,9 @@ class Bills extends Controller
      */
     public function index()
     {
-      //  dd($this->getNextBillNumber());
+
         $bills = Bill::with(['contact', 'items', 'histories', 'transactions'])->collect(['billed_at'=> 'desc']);
-
         $vendors = Contact::vendor()->enabled()->orderBy('name')->pluck('name', 'id');
-
         $categories = Category::type('expense')->enabled()->orderBy('name')->pluck('name', 'id');
 
         $statuses = $this->getBillStatuses();
@@ -102,7 +101,7 @@ class Bills extends Controller
     public function create()
     {
 
-        $vendors = Contact::vendor()->enabled()->orderBy('name')->pluck('name', 'id');
+       $vendors = Contact::vendor()->enabled()->orderBy('name')->pluck('name', 'id');
 
         $currencies = Currency::enabled()->orderBy('name')->pluck('name', 'code')->toArray();
 
@@ -113,11 +112,12 @@ class Bills extends Controller
 
         $taxes = Tax::enabled()->orderBy('name')->get();
         $warehouses = Warehouse::pluck('name','id');
+        $projects = Project::pluck('name','id');
         $categories = Category::type('expense')->enabled()->orderBy('name')->pluck('name', 'id');
 
         $number = $this->getNextBillNumber();
 
-        return view('purchases.bills.create', compact('vendors', 'currencies', 'currency', 'items', 'taxes', 'categories', 'number','bills','warehouses','itemss'));
+        return view('purchases.bills.create', compact('vendors', 'currencies', 'currency', 'items', 'taxes', 'categories', 'number','bills','warehouses','itemss','projects'));
     }
 
     /**
@@ -129,7 +129,7 @@ class Bills extends Controller
      */
     public function store(Request $request)
     {
-        $request['order_number'] = $request->get('order_no');
+
         $response = $this->ajaxDispatch(new CreateBill($request));
 
         if ($response['success']) {
@@ -207,12 +207,15 @@ class Bills extends Controller
         $currency = Currency::where('code', $bill->currency_code)->first();
 
         $items = Item::enabled()->orderBy('name')->get();
+        $itemss = Item::enabled()->orderBy('name')->pluck('name','id')->toArray();
 
         $taxes = Tax::enabled()->orderBy('name')->get();
+        $warehouses = Warehouse::pluck('name','id');
+        $projects = Project::pluck('name','id');
 
         $categories = Category::type('expense')->enabled()->orderBy('name')->pluck('name', 'id');
 
-        return view('purchases.bills.edit', compact('bill', 'vendors', 'currencies', 'currency', 'items', 'taxes', 'categories'));
+        return view('purchases.bills.edit', compact('bill', 'vendors', 'currencies', 'currency', 'items', 'taxes', 'categories','itemss','warehouses','projects'));
     }
 
     /**

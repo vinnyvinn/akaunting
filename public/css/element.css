@@ -2614,7 +2614,7 @@
 }
 
 :first-of-type.select-tax .el-select span:first-of-type {
-    width: 125px !important;
+    width: 100px !important;
     margin-top: 0;
 
 }
@@ -2686,7 +2686,8 @@
 }
 
 .el-select .el-input.is-focus .el-input__inner {
-    border-color: #3C3F72
+    border-color: #3C3F72;
+
 }
 
 .el-select .el-input .el-input__inner:focus {
@@ -15508,6 +15509,7 @@
 .select-icon-position
 {
     padding-top: 0.3rem;
+    padding-right: 1rem;
 }
 
 .el-select-icon
@@ -15519,10 +15521,18 @@
 {
     padding-left: 38px;
 }
+.walla .el-select .el-input .el-input__inner{
+    padding-left: 4px;
+    margin-right: 100px;
+}
 
 .form-control.datepicker.flatpickr-input
 {
     padding-left: 2px;
+}
+#bill-item-rows .el-input__inner{
+    padding-left: 19px;
+    margin-right: 80px;
 }
 /*--------El Select Icon Finish--------*/
 

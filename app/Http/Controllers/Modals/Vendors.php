@@ -57,6 +57,7 @@ class Vendors extends Controller
      */
     public function store(Request $request)
     {
+        \Log::info('here');
         $request['enabled'] = 1;
 
         $response = $this->ajaxDispatch(new CreateContact($request));
@@ -64,6 +65,8 @@ class Vendors extends Controller
         if ($response['success']) {
             $response['message'] = trans('messages.success.added', ['type' => trans_choice('general.vendors', 1)]);
         }
+        \Log::info('coooll');
+        \Log::info($response);
 
         return response()->json($response);
     }

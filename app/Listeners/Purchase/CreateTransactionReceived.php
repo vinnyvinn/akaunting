@@ -31,7 +31,7 @@ class CreateTransactionReceived
              foreach (DB::table('bill_items')->where('bill_id', $event->bill->id)->get() as $bill_item) {
                  if ($item->id == $bill_item->id) {
                      InventoryTx::create([
-                         'stock_link' => $item->id,
+                         'stock_link' => $item->item_id,
                          'stk_qty' =>$item->quantity,
                          'tx_id' => $event->bill->id,
                          'tx_date' => Carbon::now(),

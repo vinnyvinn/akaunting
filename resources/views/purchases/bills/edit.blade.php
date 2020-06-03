@@ -28,7 +28,9 @@
 
                     {{ Form::textGroup('bill_number', trans('bills.bill_number'), 'file-text-o') }}
 
-                    {{ Form::textGroup('order_number', trans('bills.order_number'), 'shopping-cart',[]) }}
+                    {{ Form::textGroup('order_no', trans('bills.order_number'), 'shopping-cart',[]) }}
+                    {{ Form::selectAddNewGroup('project_id', 'Project', 'flask', $projects, $bill->project_id, ['required' => 'required', 'path' => route('modals.projects.create')]) }}
+                    {{ Form::selectAddNewGroup('warehouse_id', 'Warehouse', 'user', $warehouses, $bill->warehouse_id, ['required' => 'required', 'path' => route('modals.warehouses.create'), 'change' => 'onChangeWarehouse']) }}
 
                     <div class="col-sm-12 mb-4">
                         @php $item_colspan = in_array(setting('localisation.discount_location', 'total'), ['item', 'both']) ? '6' : '5' @endphp

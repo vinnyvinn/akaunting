@@ -36,7 +36,8 @@ class CoreV1 extends Migration
             $table->increments('id');
             $table->integer('company_id');
             $table->string('bill_number');
-            $table->string('order_number')->nullable();
+            $table->string('order_no')->nullable();
+            $table->integer('project_id')->nullable();
             $table->string('bill_status_code');
             $table->dateTime('billed_at');
             $table->dateTime('due_at');
